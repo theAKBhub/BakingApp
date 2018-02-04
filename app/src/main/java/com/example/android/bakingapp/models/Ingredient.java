@@ -7,16 +7,16 @@ import com.example.android.bakingapp.utils.Config;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * A {@link Ingredients} object that contains ingredients related to a single Recipe item
+ * A {@link Ingredient} object that contains ingredients related to a single Recipe item
  * Created by aditibhattacharya on 26/01/2018.
  */
 
-public class Ingredients implements Parcelable {
+public class Ingredient implements Parcelable {
 
     /**
-     * {@link Ingredients} Attributes
+     * {@link Ingredient} Attributes
      * Each attribute has a corresponding @SerializedName that is needed for GSON
-     * to map the JSON keys with the attributes of {@link Ingredients} object.
+     * to map the JSON keys with the attributes of {@link Ingredient} object.
      */
 
     // Ingredient Name
@@ -38,7 +38,7 @@ public class Ingredients implements Parcelable {
     /**
      * Empty constructor
      */
-    public Ingredients() {
+    public Ingredient() {
     }
 
 
@@ -77,37 +77,37 @@ public class Ingredients implements Parcelable {
 
 
     /**
-     * Default Constructor - Constructs a new {@link Ingredients} object
+     * Default Constructor - Constructs a new {@link Ingredient} object
      * Scope for this constructor is private so CREATOR can access it
      * @param parcel
      */
-    private Ingredients(Parcel parcel) {
-        // Check if ingredient name exists, then extract
-        mIngredient = (parcel.readByte() == Config.JSON_BYTE_VALUE) ? parcel.readString() : null;
-
+    private Ingredient(Parcel parcel) {
         // Check if ingredient quantity exists, then extract
         mIngredientQuantity = (parcel.readByte() == Config.JSON_BYTE_VALUE) ? parcel.readDouble() : 0;
 
         // Check if ingredient measure exists, then extract
         mIngredientMeasure = (parcel.readByte() == Config.JSON_BYTE_VALUE) ? parcel.readString() : null;
+
+        // Check if ingredient name exists, then extract
+        mIngredient = (parcel.readByte() == Config.JSON_BYTE_VALUE) ? parcel.readString() : null;
     }
 
     @Override
     public void writeToParcel(Parcel outputParcel, int flags) {
-        outputParcel.writeString(mIngredient);
         outputParcel.writeDouble(mIngredientQuantity);
         outputParcel.writeString(mIngredientMeasure);
+        outputParcel.writeString(mIngredient);
     }
 
-    public static final Creator<Ingredients> CREATOR = new Creator<Ingredients>() {
+    public static final Creator<Ingredient> CREATOR = new Creator<Ingredient>() {
         @Override
-        public Ingredients createFromParcel(Parcel inputParcel) {
-            return new Ingredients(inputParcel);
+        public Ingredient createFromParcel(Parcel inputParcel) {
+            return new Ingredient(inputParcel);
         }
 
         @Override
-        public Ingredients[] newArray(int size) {
-            return new Ingredients[size];
+        public Ingredient[] newArray(int size) {
+            return new Ingredient[size];
         }
     };
 

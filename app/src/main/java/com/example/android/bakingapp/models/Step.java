@@ -7,16 +7,16 @@ import com.example.android.bakingapp.utils.Config;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * A {@link Steps} object that contains steps related to a single Recipe item
+ * A {@link Step} object that contains steps related to a single Recipe item
  * Created by aditibhattacharya on 26/01/2018.
  */
 
-public class Steps implements Parcelable {
+public class Step implements Parcelable {
 
     /**
-     * {@link Ingredients} Attributes
+     * {@link Ingredient} Attributes
      * Each attribute has a corresponding @SerializedName that is needed for GSON
-     * to map the JSON keys with the attributes of {@link Ingredients} object.
+     * to map the JSON keys with the attributes of {@link Ingredient} object.
      */
 
     // Step ID
@@ -48,7 +48,7 @@ public class Steps implements Parcelable {
     /**
      * Empty constructor
      */
-    public Steps() {
+    public Step() {
     }
 
 
@@ -109,11 +109,11 @@ public class Steps implements Parcelable {
 
 
     /**
-     * Default Constructor - Constructs a new {@link Steps} object
+     * Default Constructor - Constructs a new {@link Step} object
      * Scope for this constructor is private so CREATOR can access it
      * @param parcel
      */
-    private Steps(Parcel parcel) {
+    private Step(Parcel parcel) {
         // Check if Step ID exists, then extract
         mStepId = (parcel.readByte() == Config.JSON_BYTE_VALUE) ? parcel.readInt() : 0;
 
@@ -131,15 +131,15 @@ public class Steps implements Parcelable {
     }
 
 
-    public static final Creator<Steps> CREATOR = new Creator<Steps>() {
+    public static final Creator<Step> CREATOR = new Creator<Step>() {
         @Override
-        public Steps createFromParcel(Parcel inputParcel) {
-            return new Steps(inputParcel);
+        public Step createFromParcel(Parcel inputParcel) {
+            return new Step(inputParcel);
         }
 
         @Override
-        public Steps[] newArray(int size) {
-            return new Steps[size];
+        public Step[] newArray(int size) {
+            return new Step[size];
         }
     };
 

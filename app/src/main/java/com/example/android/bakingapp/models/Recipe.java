@@ -29,15 +29,13 @@ public class Recipe implements Parcelable {
     @SerializedName("name")
     private String mRecipeName;
 
-    // Recipe Ingredients
-    @Nullable
+    // Recipe Ingredient
     @SerializedName("ingredients")
-    private List<Ingredients> mRecipeIngredients;
+    private List<Ingredient> mRecipeIngredients = null;
 
-    // Recipe Steps
-    @Nullable
+    // Recipe Step
     @SerializedName("steps")
-    private List<Steps> mRecipeSteps;
+    private List<Step> mRecipeSteps = null;
 
     // Recipe Servings
     @Nullable
@@ -77,25 +75,23 @@ public class Recipe implements Parcelable {
         mRecipeName = recipeName;
     }
 
-    /** Getter method - Recipe Ingredients */
-    @Nullable
-    public List<Ingredients> getRecipeIngredients() {
+    /** Getter method - Recipe Ingredient */
+    public List<Ingredient> getRecipeIngredients() {
         return mRecipeIngredients;
     }
 
-    /** Setter method - Recipe Ingredients */
-    public void setRecipeIngredients(@Nullable List<Ingredients> recipeIngredients) {
+    /** Setter method - Recipe Ingredient */
+    public void setRecipeIngredients(List<Ingredient> recipeIngredients) {
         mRecipeIngredients = recipeIngredients;
     }
 
-    /** Getter method - Recipe Steps */
-    @Nullable
-    public List<Steps> getRecipeSteps() {
+    /** Getter method - Recipe Step */
+    public List<Step> getRecipeSteps() {
         return mRecipeSteps;
     }
 
-    /** Setter method - Recipe Steps */
-    public void setRecipeSteps(@Nullable List<Steps> recipeSteps) {
+    /** Setter method - Recipe Step */
+    public void setRecipeSteps(List<Step> recipeSteps) {
         mRecipeSteps = recipeSteps;
     }
 
@@ -131,18 +127,19 @@ public class Recipe implements Parcelable {
         mRecipeId = parcel.readInt();
         mRecipeName = parcel.readString();
 
+        parcel.readList(mRecipeIngredients, Ingredient.class.getClassLoader());
         // Check if ingredients exist, then extract
-        if (parcel.readByte() == Config.JSON_BYTE_VALUE) {
+        /*if (parcel.readByte() == Config.JSON_BYTE_VALUE) {
             mRecipeIngredients = new ArrayList<>();
-            parcel.readList(mRecipeIngredients, Ingredients.class.getClassLoader());
+            parcel.readList(mRecipeIngredients, Ingredient.class.getClassLoader());
         } else {
             mRecipeIngredients = null;
-        }
+        }*/
 
         // Check if steps exist, then extract
         if (parcel.readByte() == Config.JSON_BYTE_VALUE) {
             mRecipeSteps = new ArrayList<>();
-            parcel.readList(mRecipeSteps, Steps.class.getClassLoader());
+            parcel.readList(mRecipeSteps, Step.class.getClassLoader());
         } else {
             mRecipeSteps = null;
         }

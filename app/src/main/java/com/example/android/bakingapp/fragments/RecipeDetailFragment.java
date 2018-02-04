@@ -11,9 +11,9 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import com.example.android.bakingapp.R;
 import com.example.android.bakingapp.activities.DetailActivity;
-import com.example.android.bakingapp.models.Ingredients;
+import com.example.android.bakingapp.models.Ingredient;
 import com.example.android.bakingapp.models.Recipe;
-import com.example.android.bakingapp.models.Steps;
+import com.example.android.bakingapp.models.Step;
 import java.util.ArrayList;
 import java.util.List;
 import timber.log.Timber;
@@ -48,27 +48,27 @@ public class RecipeDetailFragment extends Fragment {
         TextView tv1 = rootView.findViewById(R.id.tv_ingredients);
         TextView tv2 = rootView.findViewById(R.id.tv_steps);
 
-        List<Ingredients> ingredients = mSelectedRecipe.getRecipeIngredients();
-        List<Steps> steps = mSelectedRecipe.getRecipeSteps();
+        List<Ingredient> ingredients = mSelectedRecipe.getRecipeIngredients();
+        List<Step> steps = mSelectedRecipe.getRecipeSteps();
 
-        String i = "Ingredients ...\n";
-        String s = "Steps ...\n";
+        String i = "Ingredient ...\n";
+        String s = "Step ...\n";
 
         if (ingredients != null) {
-            Timber.d("Ingredients not null ...");
-            for (Ingredients ing : ingredients) {
+            Timber.d("Ingredient not null ...");
+            for (Ingredient ing : ingredients) {
                 i += ing.getIngredient() + " - " + ing.getIngredientQuantity() + " " + ing.getIngredientMeasure() + "\n";
             }
         } else {
-            Timber.d("Ingredients NULL ...");
+            Timber.d("Ingredient NULL ...");
         }
 
-        if (steps != null) { Timber.d("Steps not null ...");
-            for (Steps step : steps) {
+        if (steps != null) { Timber.d("Step not null ...");
+            for (Step step : steps) {
                 s += "(" + step.getStepId() + ") " + step.getStepShortDescription() + "\n";
             }
         } else {
-            Timber.d("Steps NULL ...");
+            Timber.d("Step NULL ...");
         }
 
         tv1.setText(i);

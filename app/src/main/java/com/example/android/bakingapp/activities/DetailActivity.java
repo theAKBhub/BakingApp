@@ -5,7 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import com.example.android.bakingapp.R;
 import com.example.android.bakingapp.fragments.RecipeDetailFragment;
-import com.example.android.bakingapp.models.Ingredients;
+import com.example.android.bakingapp.models.Ingredient;
 import com.example.android.bakingapp.models.Recipe;
 import com.example.android.bakingapp.utils.Config;
 import com.example.android.bakingapp.utils.Utils;
@@ -39,11 +39,11 @@ public class DetailActivity extends AppCompatActivity {
             // Exit early if selected recipe is a null object or has no recipe name
             if ((mRecipe == null) || (Utils.isEmptyString(mRecipe.get(0).getRecipeName()))) return;
 
-            List<Ingredients> ingredients = mRecipe.get(0).getRecipeIngredients();
+            List<Ingredient> ingredients = mRecipe.get(0).getRecipeIngredients();
             if (ingredients != null) {
-                Timber.d("Ingredients count = " + ingredients.size());
+                Timber.d("Ingredient count = " + ingredients.size());
             } else {
-                Timber.d("Ingredients list is null");
+                Timber.d("Ingredient list is null");
             }
 
 
