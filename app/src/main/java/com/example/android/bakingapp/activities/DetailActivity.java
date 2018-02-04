@@ -40,8 +40,13 @@ public class DetailActivity extends AppCompatActivity {
             if ((mRecipe == null) || (Utils.isEmptyString(mRecipe.get(0).getRecipeName()))) return;
 
             List<Ingredients> ingredients = mRecipe.get(0).getRecipeIngredients();
-            Timber.d("Ingred count = " + ingredients.size());
-            
+            if (ingredients != null) {
+                Timber.d("Ingredients count = " + ingredients.size());
+            } else {
+                Timber.d("Ingredients list is null");
+            }
+
+
 
             // Create an instance of FragmentManager
             FragmentManager fragmentManager = getSupportFragmentManager();
