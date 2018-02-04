@@ -1,0 +1,50 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        applicationId "com.example.android.bakingapp"
+        minSdkVersion 16
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
+    implementation "com.jakewharton.timber:timber:$rootProject.timberLibraryVersion"
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation "com.android.support.test:runner:$rootProject.testRunnerVersion"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.espressoLibraryVersion"
+    compile "com.android.support:design:$rootProject.supportLibraryVersion"
+
+    // RecyclerView
+    compile "com.android.support:recyclerview-v7:$rootProject.supportLibraryVersion"
+
+    // Cardview
+    compile "com.android.support:cardview-v7:$rootProject.supportLibraryVersion"
+
+    // Retrofit
+    compile "com.squareup.retrofit2:retrofit:$rootProject.retrofitLibraryVersion"
+
+    // OkHttpClient
+    compile "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttpLibraryVersion"
+
+    // JSON Parsing
+    compile "com.google.code.gson:gson:$rootProject.gsonLibraryVersion"
+    compile "com.squareup.retrofit2:converter-gson:$rootProject.retrofitLibraryVersion"
+
+    // Butterknife Library
+    compile "com.jakewharton:butterknife:$rootProject.butterknifeLibraryVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterknifeLibraryVersion"
+}

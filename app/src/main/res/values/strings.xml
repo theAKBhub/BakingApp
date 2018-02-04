@@ -1,0 +1,36 @@
+<resources>
+
+    <string name="app_name">Baking App</string>
+
+    <!-- Display Strings -->
+    <string name="display_servings">Servings: %1$d</string>
+    <string name="display_no_servings">Servings: <i>unavailable</i></string>
+
+    <!-- Recipe Types -->
+    <string name="recipe_pie">Pie</string>
+    <string name="recipe_cake">Cake</string>
+    <string name="recipe_brownie">Brownie</string>
+    <string name="recipe_cheesecake">Cheesecake</string>
+
+
+    <!-- Placeholders -->
+    <string name="placeholder_recipe_icon">Recipe Icon</string>
+    <string name="placeholder_recipe_name">Recipe Name</string>
+    <string name="placeholder_recipe_servings">Servings: 4</string>
+
+    <!-- Alert Messages -->
+    <string name="alert_connectivity_status_ok">Your device is connected to Internet</string>
+    <string name="alert_connectivity_status_notok">Your device is not connected to Internet</string>
+    <string name="alert_recipe_load_failure">Failed to load list of recipes. \nCheck if device has connectivity and try again.</string>
+
+    <!-- Error Messages -->
+    <string name="error_recipe_load">Error loading recipes via HTTP request [Status code = %1$d]</string>
+
+    <!-- Intent Filters -->
+    <string name="intent_filter_connectivity_change">android.net.conn.CONNECTIVITY_CHANGE</string>
+    <string name="intent_filter_wifi_state_changed">android.net.wifi.WIFI_STATE_CHANGED</string>
+
+    <!-- Menu -->
+    <string name="menu_refresh">Refresh</string>
+
+</resources>

@@ -1,0 +1,63 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!-- Splash Theme -->
+    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="android:windowBackground">@drawable/splash</item>
+    </style>
+
+    <!-- Recipe Listing Styles -->
+    <style name="ProgressBar">
+        <item name="android:layout_width">@dimen/progressbar_size</item>
+        <item name="android:layout_height">@dimen/progressbar_size</item>
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:visibility">invisible</item>
+    </style>
+
+    <style name="TextViewEmptyList">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:layout_marginBottom">@dimen/activity_margin</item>
+        <item name="android:textSize">@dimen/textsize_small</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:gravity">center</item>
+        <item name="android:visibility">visible</item>
+    </style>
+
+    <style name="RecipeListIcon">
+        <item name="android:layout_width">@dimen/list_image_size</item>
+        <item name="android:layout_height">@dimen/list_image_size</item>
+        <item name="android:layout_marginRight">@dimen/list_image_margin</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:layout_alignParentTop">true</item>
+    </style>
+
+    <style name="RecipeListText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_toRightOf">@id/imageview_recipe_icon</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="RecipeListText.RecipeName">
+        <item name="android:textSize">@dimen/textsize_medium</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+        <item name="android:layout_alignParentTop">true</item>
+    </style>
+
+    <style name="RecipeListText.RecipeServings">
+        <item name="android:layout_below">@id/textview_recipe_name</item>
+        <item name="android:textSize">@dimen/textsize_xsmall</item>
+        <item name="android:textColor">@color/colorTextSecondary</item>
+    </style>
+
+</resources>

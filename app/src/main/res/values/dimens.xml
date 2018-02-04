@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="activity_margin">16dp</dimen>
+    <dimen name="list_image_margin">48dp</dimen>
+    <dimen name="list_image_size">48dp</dimen>
+    <dimen name="list_item_margin">5dp</dimen>
+    <dimen name="cardview_elevation">1dp</dimen>
+    <dimen name="progressbar_size">42dp</dimen>
+
+    <!-- Font Sizes -->
+    <dimen name="textsize_xsmall">14sp</dimen>
+    <dimen name="textsize_small">16sp</dimen>
+    <dimen name="textsize_medium">18sp</dimen>
+    <dimen name="textsize_large">20sp</dimen>
+    <dimen name="textsize_xlarge">24sp</dimen>
+    <dimen name="textsize_title">28sp</dimen>
+</resources>
