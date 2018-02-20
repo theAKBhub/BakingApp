@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="left_pane_width">450dp</dimen>
+    <dimen name="media_player_height">300dp</dimen>
+    <dimen name="panel_margin">0dp</dimen>
+</resources>

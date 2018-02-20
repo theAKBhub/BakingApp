@@ -9,4 +9,6 @@
     <color name="colorTextSecondary">#EC515A</color>
     <color name="colorBackground">#F7EEE5</color>
     <color name="colorListBackground">#F1E7DC</color>
+    <color name="colorListItemSelected">#D0BDAF</color>
+    <color name="colorAlphaBlack">#E6000000</color>
 </resources>

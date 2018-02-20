@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/activity_margin"
+    android:orientation="vertical"
+    android:background="@color/colorBackground"
+    tools:context="com.example.android.bakingapp.activities.DetailActivity">
+
+    <!-- Fragment to display Ingredients and List of Steps -->
+    <FrameLayout
+        android:id="@+id/container_recipe_detail"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+    </FrameLayout>
+
+    <!-- Divider -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray" />
+
+    <!-- Fragment to display media and step details -->
+    <FrameLayout
+        android:id="@+id/container_recipe_step_detail"
+        android:paddingTop="@dimen/activity_margin"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+    </FrameLayout>
+
+</LinearLayout>

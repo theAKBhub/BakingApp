@@ -10,20 +10,26 @@
     android:fillViewport="true">
 
     <LinearLayout
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
+        android:background="@color/colorLatte"
         android:layout_marginBottom="@dimen/activity_margin">
 
         <TextView
             android:id="@+id/textview_ingredients"
             tools:text="@string/label_ingredients"
-            style="@style/TextViewIngredient"/>
+            style="@style/TextViewIngredient"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"/>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerview_steps"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
 
     </LinearLayout>
 

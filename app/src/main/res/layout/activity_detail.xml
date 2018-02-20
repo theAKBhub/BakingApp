@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="@dimen/activity_margin"
+    android:background="@color/colorBackground"
     tools:context="com.example.android.bakingapp.activities.DetailActivity">
 
     <FrameLayout

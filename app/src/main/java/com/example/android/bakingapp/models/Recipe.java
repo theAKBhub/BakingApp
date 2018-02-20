@@ -2,8 +2,6 @@ package com.example.android.bakingapp.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.support.annotation.Nullable;
-import com.example.android.bakingapp.utils.Config;
 import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,101 +19,78 @@ public class Recipe implements Parcelable {
      * to map the JSON keys with the attributes of {@link Recipe} object.
      */
 
-    // Recipe ID
     @SerializedName("id")
-    private int mRecipeId;
+    private Integer mRecipeId;
 
-    // Recipe Name
     @SerializedName("name")
     private String mRecipeName;
 
-    // Recipe Ingredient
     @SerializedName("ingredients")
     private List<Ingredient> mRecipeIngredients = null;
 
-    // Recipe Step
     @SerializedName("steps")
     private List<Step> mRecipeSteps = null;
 
-    // Recipe Servings
-    @Nullable
     @SerializedName("servings")
-    private int mRecipeServings;
+    private Integer mRecipeServings;
 
-    // Recipe Image
-    @Nullable
     @SerializedName("image")
     private String mRecipeImage;
 
 
+
     /**
-     * Empty constructor
+     * Getter and Setter methods for class Recipe
      */
-    public Recipe() {
-    }
 
-
-    /** Getter method - Recipe ID */
-    public int getRecipeId() {
+    public Integer getRecipeId() {
         return mRecipeId;
     }
 
-    /** Setter method - Recipe ID */
-    public void setRecipeId(int recipeId) {
+    public void setRecipeId(Integer recipeId) {
         mRecipeId = recipeId;
     }
 
-    /** Getter method - Recipe Name */
     public String getRecipeName() {
         return mRecipeName;
     }
 
-    /** Setter method - Recipe Name */
     public void setRecipeName(String recipeName) {
         mRecipeName = recipeName;
     }
 
-    /** Getter method - Recipe Ingredient */
     public List<Ingredient> getRecipeIngredients() {
         return mRecipeIngredients;
     }
 
-    /** Setter method - Recipe Ingredient */
-    public void setRecipeIngredients(List<Ingredient> recipeIngredients) {
-        mRecipeIngredients = recipeIngredients;
+    public void setRecipeIngredients(List<Ingredient> ingredients) {
+        mRecipeIngredients = ingredients;
     }
 
-    /** Getter method - Recipe Step */
     public List<Step> getRecipeSteps() {
         return mRecipeSteps;
     }
 
-    /** Setter method - Recipe Step */
-    public void setRecipeSteps(List<Step> recipeSteps) {
-        mRecipeSteps = recipeSteps;
+    public void setRecipeSteps(List<Step> steps) {
+        mRecipeSteps = steps;
     }
 
-    /** Getter method - Recipe Servings */
-    @Nullable
-    public int getRecipeServings() {
+    public Integer getRecipeServings() {
         return mRecipeServings;
     }
 
-    /** Setter method - Recipe Servings */
-    public void setRecipeServings(@Nullable int recipeServings) {
-        mRecipeServings = recipeServings;
+    public void setRecipeServings(Integer servings) {
+        mRecipeServings = servings;
     }
 
-    /** Getter method - Recipe Image */
-    @Nullable
     public String getRecipeImage() {
         return mRecipeImage;
     }
 
-    /** Setter method - Recipe Image */
-    public void setRecipeImage(@Nullable String recipeImage) {
-        mRecipeImage = recipeImage;
+    public void setRecipeImage(String image) {
+        mRecipeImage = image;
     }
+
 
 
     /**
@@ -123,39 +98,73 @@ public class Recipe implements Parcelable {
      * Scope for this constructor is private so CREATOR can access it
      * @param parcel
      */
-    private Recipe(Parcel parcel) {
-        mRecipeId = parcel.readInt();
+    protected Recipe(Parcel parcel) {
+        mRecipeId = parcel.readByte() == 0x00 ? null : parcel.readInt();
         mRecipeName = parcel.readString();
-
-        parcel.readList(mRecipeIngredients, Ingredient.class.getClassLoader());
-        // Check if ingredients exist, then extract
-        /*if (parcel.readByte() == Config.JSON_BYTE_VALUE) {
+        if (parcel.readByte() == 0x01) {
             mRecipeIngredients = new ArrayList<>();
             parcel.readList(mRecipeIngredients, Ingredient.class.getClassLoader());
         } else {
             mRecipeIngredients = null;
-        }*/
-
-        // Check if steps exist, then extract
-        if (parcel.readByte() == Config.JSON_BYTE_VALUE) {
+        }
+        if (parcel.readByte() == 0x01) {
             mRecipeSteps = new ArrayList<>();
             parcel.readList(mRecipeSteps, Step.class.getClassLoader());
         } else {
             mRecipeSteps = null;
         }
-
-        // Check if servings value exists, then extract
-        mRecipeServings = (parcel.readByte() == Config.JSON_BYTE_VALUE) ? parcel.readInt() : 0;
-
-        // Check if image name exists, then extract
-        mRecipeImage = (parcel.readByte() == Config.JSON_BYTE_VALUE) ? parcel.readString() : null;
+        mRecipeServings = parcel.readByte() == 0x00 ? null : parcel.readInt();
+        mRecipeImage = parcel.readByte() == 0x00 ? null : parcel.readString();
     }
 
 
-    public static final Creator<Recipe> CREATOR = new Creator<Recipe>() {
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        if (mRecipeId == null) {
+            dest.writeByte((byte) (0x00));
+        } else {
+            dest.writeByte((byte) (0x01));
+            dest.writeInt(mRecipeId);
+        }
+
+        dest.writeString(mRecipeName);
+
+        if (mRecipeIngredients == null) {
+            dest.writeByte((byte) (0x00));
+        } else {
+            dest.writeByte((byte) (0x01));
+            dest.writeList(mRecipeIngredients);
+        }
+
+        if (mRecipeSteps == null) {
+            dest.writeByte((byte) (0x00));
+        } else {
+            dest.writeByte((byte) (0x01));
+            dest.writeList(mRecipeSteps);
+        }
+
+        if (mRecipeServings == null) {
+            dest.writeByte((byte) (0x00));
+        } else {
+            dest.writeByte((byte) (0x01));
+            dest.writeInt(mRecipeServings);
+        }
+
+        dest.writeString(mRecipeImage);
+    }
+
+
+    @SuppressWarnings("unused")
+    public static final Parcelable.Creator<Recipe> CREATOR = new Parcelable.Creator<Recipe>() {
         @Override
-        public Recipe createFromParcel(Parcel inputParcel) {
-            return new Recipe(inputParcel);
+        public Recipe createFromParcel(Parcel in) {
+            return new Recipe(in);
         }
 
         @Override
@@ -163,19 +172,4 @@ public class Recipe implements Parcelable {
             return new Recipe[size];
         }
     };
-
-    @Override
-    public void writeToParcel(Parcel outputParcel, int flags) {
-        outputParcel.writeInt(mRecipeId);
-        outputParcel.writeString(mRecipeName);
-        outputParcel.writeList(mRecipeIngredients);
-        outputParcel.writeList(mRecipeSteps);
-        outputParcel.writeInt(mRecipeServings);
-        outputParcel.writeString(mRecipeImage);
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
 }

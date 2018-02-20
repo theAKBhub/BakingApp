@@ -1,10 +1,20 @@
 <resources>
 
     <string name="app_name">Baking App</string>
+    <string name="label_ingredients">Recipe Ingredients</string>
+    <string name="label_steps">Recipe Steps</string>
+    <string name="label_read_more">Read More</string>
+    <string name="button_previous">Previous</string>
+    <string name="button_next">Next</string>
+
 
     <!-- Display Strings -->
     <string name="display_servings">Servings: %1$d</string>
     <string name="display_no_servings">Servings: <i>unavailable</i></string>
+    <string name="display_step_id">%d\u0029\u0020\u0020%s</string>
+    <string name="display_ingredient">%1$s\u0020\u0020\u0028%2$s\u0020%3$s\u0029\n</string>
+    <string name="display_stepnum">Step %1$d of %2$d</string>
+
 
     <!-- Recipe Types -->
     <string name="recipe_pie">Pie</string>
@@ -17,20 +27,43 @@
     <string name="placeholder_recipe_icon">Recipe Icon</string>
     <string name="placeholder_recipe_name">Recipe Name</string>
     <string name="placeholder_recipe_servings">Servings: 4</string>
+    <string name="placeholder_step">Step Short Description</string>
+    <string name="placeholder_stepnum">Step 1 of 10</string>
+    <string name="placeholder_quantity">2.0</string>
+    <string name="placeholder_measure">cups</string>
+    <string name="placeholder_ingredient">Ingredient name</string>
+    <string name="placeholder_no_media">No recipe video for this step</string>
+    <string name="placeholder_widget_header">Recipe Name</string>
+
 
     <!-- Alert Messages -->
     <string name="alert_connectivity_status_ok">Your device is connected to Internet</string>
     <string name="alert_connectivity_status_notok">Your device is not connected to Internet</string>
     <string name="alert_recipe_load_failure">Failed to load list of recipes. \nCheck if device has connectivity and try again.</string>
 
+
     <!-- Error Messages -->
     <string name="error_recipe_load">Error loading recipes via HTTP request [Status code = %1$d]</string>
+    <string name="error_missing_callback">%1$s must implement OnViewClickListener</string>
+    <string name="error_invalid_step">There seems to be a problem. The selected recipe step is not identified.</string>
+
 
     <!-- Intent Filters -->
     <string name="intent_filter_connectivity_change">android.net.conn.CONNECTIVITY_CHANGE</string>
     <string name="intent_filter_wifi_state_changed">android.net.wifi.WIFI_STATE_CHANGED</string>
 
+
     <!-- Menu -->
     <string name="menu_refresh">Refresh</string>
+
+
+    <!-- Widget -->
+    <string name="appwidget_text">Tap here to select a recipe.\nIngredients of the recipe will be displayed
+        here after the app has been launched.</string>
+    <string name="add_widget">Add widget</string>
+    <string name="button_choose_recipe">Choose Recipe</string>
+    <string name="info_ingredients_saved">Return to home screen to see ingredients saved on the widget</string>
+    <string name="info_no_chosen_recipe">Please select a recipe from the options given</string>
+
 
 </resources>

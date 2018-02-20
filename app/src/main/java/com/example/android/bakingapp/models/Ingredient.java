@@ -2,8 +2,6 @@ package com.example.android.bakingapp.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.support.annotation.Nullable;
-import com.example.android.bakingapp.utils.Config;
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -19,60 +17,42 @@ public class Ingredient implements Parcelable {
      * to map the JSON keys with the attributes of {@link Ingredient} object.
      */
 
-    // Ingredient Name
-    @Nullable
-    @SerializedName("ingredient")
-    private String mIngredient;
-
-    // Ingredient Quantity
-    @Nullable
     @SerializedName("quantity")
-    private double mIngredientQuantity;
+    private Double mIngredientQuantity;
 
-    // Ingredient Quantity Measure
-    @Nullable
     @SerializedName("measure")
     private String mIngredientMeasure;
 
+    @SerializedName("ingredient")
+    private String mIngredient;
+
 
     /**
-     * Empty constructor
+     * Getter and Setter methods for class Ingredient
      */
-    public Ingredient() {
-    }
 
-
-    /** Getter method - Ingredient Name */
-    @Nullable
-    public String getIngredient() {
-        return mIngredient;
-    }
-
-    /** Setter method - Ingredient Name */
-    public void setIngredient(String ingredient) {
-        mIngredient = ingredient;
-    }
-
-    /** Getter method - Ingredient Quantity */
-    @Nullable
-    public double getIngredientQuantity() {
+    public Double getIngredientQuantity() {
         return mIngredientQuantity;
     }
 
-    /** Setter method - Ingredient Quantity */
-    public void setIngredientQuantity(double ingredientQuantity) {
-        mIngredientQuantity = ingredientQuantity;
+    public void setIngredientQuantity(Double quantity) {
+        mIngredientQuantity = quantity;
     }
 
-    /** Getter method - Ingredient Measure */
-    @Nullable
     public String getIngredientMeasure() {
         return mIngredientMeasure;
     }
 
-    /** Setter method - Ingredient Measure */
-    public void setIngredientMeasure(String ingredientMeasure) {
-        mIngredientMeasure = ingredientMeasure;
+    public void setIngredientMeasure(String measure) {
+        mIngredientMeasure = measure;
+    }
+
+    public String getIngredient() {
+        return mIngredient;
+    }
+
+    public void setIngredient(String ingredient) {
+        mIngredient = ingredient;
     }
 
 
@@ -82,27 +62,40 @@ public class Ingredient implements Parcelable {
      * @param parcel
      */
     private Ingredient(Parcel parcel) {
-        // Check if ingredient quantity exists, then extract
-        mIngredientQuantity = (parcel.readByte() == Config.JSON_BYTE_VALUE) ? parcel.readDouble() : 0;
-
-        // Check if ingredient measure exists, then extract
-        mIngredientMeasure = (parcel.readByte() == Config.JSON_BYTE_VALUE) ? parcel.readString() : null;
-
-        // Check if ingredient name exists, then extract
-        mIngredient = (parcel.readByte() == Config.JSON_BYTE_VALUE) ? parcel.readString() : null;
+        mIngredientQuantity = parcel.readByte() == 0x00 ? null : parcel.readDouble();
+        mIngredientMeasure = parcel.readByte() == 0x00 ? null : parcel.readString();
+        mIngredient = parcel.readString();
     }
 
     @Override
-    public void writeToParcel(Parcel outputParcel, int flags) {
-        outputParcel.writeDouble(mIngredientQuantity);
-        outputParcel.writeString(mIngredientMeasure);
-        outputParcel.writeString(mIngredient);
+    public int describeContents() {
+        return 0;
     }
 
-    public static final Creator<Ingredient> CREATOR = new Creator<Ingredient>() {
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        if (mIngredientQuantity == null) {
+            dest.writeByte((byte) (0x00));
+        } else {
+            dest.writeByte((byte) (0x01));
+            dest.writeDouble(mIngredientQuantity);
+        }
+
+        if (mIngredientMeasure == null) {
+            dest.writeByte((byte) (0x00));
+        } else {
+            dest.writeByte((byte) (0x01));
+            dest.writeString(mIngredientMeasure);
+        }
+
+        dest.writeString(mIngredient);
+    }
+
+    @SuppressWarnings("unused")
+    public static final Parcelable.Creator<Ingredient> CREATOR = new Parcelable.Creator<Ingredient>() {
         @Override
-        public Ingredient createFromParcel(Parcel inputParcel) {
-            return new Ingredient(inputParcel);
+        public Ingredient createFromParcel(Parcel parcel) {
+            return new Ingredient(parcel);
         }
 
         @Override
@@ -110,9 +103,4 @@ public class Ingredient implements Parcelable {
             return new Ingredient[size];
         }
     };
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
 }

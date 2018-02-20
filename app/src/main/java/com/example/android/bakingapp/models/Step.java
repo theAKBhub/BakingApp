@@ -2,8 +2,6 @@ package com.example.android.bakingapp.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.support.annotation.Nullable;
-import com.example.android.bakingapp.utils.Config;
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -14,98 +12,82 @@ import com.google.gson.annotations.SerializedName;
 public class Step implements Parcelable {
 
     /**
-     * {@link Ingredient} Attributes
+     * {@link Step} Attributes
      * Each attribute has a corresponding @SerializedName that is needed for GSON
-     * to map the JSON keys with the attributes of {@link Ingredient} object.
+     * to map the JSON keys with the attributes of {@link Step} object.
      */
 
-    // Step ID
-    @Nullable
     @SerializedName("id")
-    private int mStepId;
+    private Integer mStepId;
 
-    // Step short description
-    @Nullable
     @SerializedName("shortDescription")
     private String mStepShortDescription;
 
-    // Step description
-    @Nullable
     @SerializedName("description")
     private String mStepDescription;
 
-    // Step Video URL
-    @Nullable
     @SerializedName("videoURL")
     private String mStepVideoUrl;
 
-    // Step Thumbnail URL
-    @Nullable
     @SerializedName("thumbnailURL")
     private String mStepThumbnailURL;
 
+    // This attribute is used to identify current step selection and change background color accordingly
+    private boolean mIsSelected;
+
+
 
     /**
-     * Empty constructor
+     * Getter and Setter methods for class Step
      */
-    public Step() {
-    }
-
-
-    /** Getter method - Step ID */
-    @Nullable
-    public int getStepId() {
+    public Integer getStepId() {
         return mStepId;
     }
 
-    /** Setter method - Step ID */
-    public void setStepId(@Nullable int stepId) {
+    public void setStepId(Integer stepId) {
         mStepId = stepId;
     }
 
-    /** Getter method - Step short description */
-    @Nullable
     public String getStepShortDescription() {
         return mStepShortDescription;
     }
 
-    /** Setter method - Step short description */
-    public void setStepShortDescription(@Nullable String stepShortDescription) {
-        mStepShortDescription = stepShortDescription;
+    public void setStepShortDescription(String shortDescription) {
+        mStepShortDescription = shortDescription;
     }
 
-    /** Getter method - Step description */
-    @Nullable
     public String getStepDescription() {
         return mStepDescription;
     }
 
-    /** Setter method - Step description */
-    public void setStepDescription(@Nullable String stepDescription) {
-        mStepDescription = stepDescription;
+    public void setStepDescription(String description) {
+        mStepDescription = description;
     }
 
-    /** Getter method - Step video URL */
-    @Nullable
-    public String getStepVideoUrl() {
+    public String getStepVideoURL() {
         return mStepVideoUrl;
     }
 
-    /** Setter method - Step video URL */
-    public void setStepVideoUrl(@Nullable String stepVideoUrl) {
-        mStepVideoUrl = stepVideoUrl;
+    public void setStepVideoURL(String videoURL) {
+        mStepVideoUrl = videoURL;
     }
 
-    /** Getter method - Step thumbnail URL */
-    @Nullable
     public String getStepThumbnailURL() {
         return mStepThumbnailURL;
     }
 
-    /** Setter method - Step thumbnail URL */
-    public void setStepThumbnailURL(@Nullable String stepThumbnailURL) {
-        mStepThumbnailURL = stepThumbnailURL;
+    public void setStepThumbnailURL(String thumbnailURL) {
+        mStepThumbnailURL = thumbnailURL;
     }
+
+    public boolean getIsSelected() {
+        return mIsSelected;
+    }
+
+    public void setIsSelected(boolean selected) {
+        mIsSelected = selected;
+    }
+
 
 
     /**
@@ -113,43 +95,12 @@ public class Step implements Parcelable {
      * Scope for this constructor is private so CREATOR can access it
      * @param parcel
      */
-    private Step(Parcel parcel) {
-        // Check if Step ID exists, then extract
-        mStepId = (parcel.readByte() == Config.JSON_BYTE_VALUE) ? parcel.readInt() : 0;
-
-        // Check if Step short description exists, then extract
-        mStepShortDescription = (parcel.readByte() == Config.JSON_BYTE_VALUE) ? parcel.readString() : null;
-
-        // Check if Step description exists, then extract
-        mStepDescription = (parcel.readByte() == Config.JSON_BYTE_VALUE) ? parcel.readString() : null;
-
-        // Check if Step video URL exists, then extract
-        mStepVideoUrl = (parcel.readByte() == Config.JSON_BYTE_VALUE) ? parcel.readString() : null;
-
-        // Check if Step thumbnail URL exists, then extract
-        mStepThumbnailURL = (parcel.readByte() == Config.JSON_BYTE_VALUE) ? parcel.readString() : null;
-    }
-
-
-    public static final Creator<Step> CREATOR = new Creator<Step>() {
-        @Override
-        public Step createFromParcel(Parcel inputParcel) {
-            return new Step(inputParcel);
-        }
-
-        @Override
-        public Step[] newArray(int size) {
-            return new Step[size];
-        }
-    };
-
-    @Override
-    public void writeToParcel(Parcel outputParcel, int flags) {
-        outputParcel.writeInt(mStepId);
-        outputParcel.writeString(mStepShortDescription);
-        outputParcel.writeString(mStepDescription);
-        outputParcel.writeString(mStepVideoUrl);
-        outputParcel.writeString(mStepThumbnailURL);
+    protected Step(Parcel parcel) {
+        mStepId = parcel.readByte() == 0x00 ? null : parcel.readInt();
+        mStepShortDescription = parcel.readString();
+        mStepDescription = parcel.readString();
+        mStepVideoUrl = parcel.readString();
+        mStepThumbnailURL = parcel.readString();
     }
 
 
@@ -157,4 +108,33 @@ public class Step implements Parcelable {
     public int describeContents() {
         return 0;
     }
+
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        if (mStepId == null) {
+            dest.writeByte((byte) (0x00));
+        } else {
+            dest.writeByte((byte) (0x01));
+            dest.writeInt(mStepId);
+        }
+        dest.writeString(mStepShortDescription);
+        dest.writeString(mStepDescription);
+        dest.writeString(mStepVideoUrl);
+        dest.writeString(mStepThumbnailURL);
+    }
+
+
+    @SuppressWarnings("unused")
+    public static final Parcelable.Creator<Step> CREATOR = new Parcelable.Creator<Step>() {
+        @Override
+        public Step createFromParcel(Parcel in) {
+            return new Step(in);
+        }
+
+        @Override
+        public Step[] newArray(int size) {
+            return new Step[size];
+        }
+    };
 }

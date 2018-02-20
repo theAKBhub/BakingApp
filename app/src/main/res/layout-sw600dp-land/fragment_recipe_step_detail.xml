@@ -15,7 +15,8 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/media_player_height"
         android:background="@color/colorLatte"
-        android:padding="@dimen/activity_margin">
+        android:padding="@dimen/activity_margin"
+        android:layout_marginBottom="@dimen/activity_margin">
 
         <com.google.android.exoplayer2.ui.SimpleExoPlayerView
             android:id="@+id/playerview_recipe_video"
@@ -34,6 +35,7 @@
     <TextView
         android:id="@+id/textview_step_desc"
         tools:text="@string/placeholder_step"
-        style="@style/StepDescTextView"/>
+        style="@style/StepDescTextView"
+        android:layout_marginTop="0dp"/>
 
 </LinearLayout>

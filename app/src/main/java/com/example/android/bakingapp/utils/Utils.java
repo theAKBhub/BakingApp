@@ -3,7 +3,11 @@ package com.example.android.bakingapp.utils;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.support.annotation.NonNull;
+import android.text.TextUtils;
+import android.view.View;
 import android.widget.Toast;
+import butterknife.ButterKnife;
 
 /**
  * This class contains common methods.
@@ -29,7 +33,7 @@ public class Utils {
         if (toast != null) {
             toast.cancel();
         }
-        toast = Toast.makeText(context, message, Toast.LENGTH_LONG);
+        toast = Toast.makeText(context, message, Toast.LENGTH_SHORT);
         return toast;
     }
 
@@ -62,5 +66,40 @@ public class Utils {
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
         return (networkInfo != null && networkInfo.isConnected());
     }
+
+    /**
+     * Utility method to convert first letter of a string to Uppercase
+     * @param word
+     * @return word with first letter uppercase
+     */
+    public static String convertStringToFirstCapital (String word) {
+        return word.toUpperCase().charAt(0) + word.substring(1).toLowerCase();
+    }
+
+    /**
+     * Utility method to convert string to Title Case
+     * @param inputString
+     * @return string in Title Case
+     */
+    public static String convertStringToTitleCase (String inputString) {
+        String [] wordsArray = inputString.split(" ");
+        for (int i = 0; i < wordsArray.length; i++) {
+            wordsArray[i] = convertStringToFirstCapital(wordsArray[i]);
+        }
+
+        return TextUtils.join(" ", wordsArray);
+    }
+
+
+    /**
+     * Butterknife setter interface to change view visibility
+     */
+    public static final ButterKnife.Setter<View, Integer> VISIBILITY = new
+            ButterKnife.Setter<View,Integer>() {
+        @Override
+        public void set(@NonNull View view, Integer value, int index) {
+            view.setVisibility(value);
+        }
+    };
 
 }

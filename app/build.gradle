@@ -47,4 +47,7 @@ dependencies {
     // Butterknife Library
     compile "com.jakewharton:butterknife:$rootProject.butterknifeLibraryVersion"
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterknifeLibraryVersion"
+
+    // SimpleExoPlayer Library
+    compile "com.google.android.exoplayer:exoplayer:$rootProject.exoplayerLibraryVersion"
 }

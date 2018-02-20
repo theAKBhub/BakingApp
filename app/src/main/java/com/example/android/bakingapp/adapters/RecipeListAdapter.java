@@ -15,6 +15,7 @@ import com.example.android.bakingapp.utils.Utils;
 import java.util.ArrayList;
 
 /**
+ * {@link RecipeListAdapter} creates a list of recipe items to a {@link android.support.v7.widget.RecyclerView}
  * Created by aditibhattacharya on 31/01/2018.
  */
 
@@ -131,6 +132,11 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
         notifyDataSetChanged();
     }
 
+    /**
+     * Add icon resource to list item depending on the recipe name
+     * @param recipeName
+     * @return
+     */
     public int getImageResourceId(String recipeName) {
         int imageResId;
 

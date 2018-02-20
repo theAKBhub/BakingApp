@@ -4,7 +4,6 @@
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
 
     <application
         android:allowBackup="true"
@@ -22,7 +21,8 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".activities.MainActivity">
+        <activity android:name=".activities.MainActivity"
+            android:launchMode="singleTask">
         </activity>
 
         <receiver
@@ -34,7 +34,40 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".activities.DetailActivity">
+        <activity
+            android:name=".activities.DetailActivity"
+            android:parentActivityName=".activities.MainActivity"
+            android:launchMode="singleTop">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.android.bakingapp.activities.MainActivity"/>
+        </activity>
+
+        <activity android:name=".activities.StepActivity"
+            android:parentActivityName=".activities.DetailActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.android.bakingapp.activities.DetailActivity"/>
+        </activity>
+
+        <receiver android:name=".widget.BakingWidgetProvider">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/baking_widget_info"/>
+        </receiver>
+
+        <service android:name=".widget.BakingWidgetService"/>
+
+        <activity android:name=".activities.WidgetActivity"
+            android:label="Choose Recipe for Widget"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE"/>
+            </intent-filter>
         </activity>
     </application>
 

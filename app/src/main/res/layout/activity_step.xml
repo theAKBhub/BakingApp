@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context="com.example.android.bakingapp.activities.StepActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/llayout_step_nav"
+            style="@style/StepNavLayout">
+
+            <ImageButton
+                android:id="@+id/button_previous"
+                style="@style/StepNavButton"
+                android:layout_marginRight="@dimen/activity_margin"
+                android:src="@drawable/ic_previous"
+                android:contentDescription="@string/button_previous"/>
+
+            <TextView
+                android:id="@+id/textview_stepnum"
+                tools:text="@string/placeholder_stepnum"
+                style="@style/StepNumTextView"/>
+
+            <ImageButton
+                android:id="@+id/button_next"
+                style="@style/StepNavButton"
+                android:layout_marginLeft="@dimen/activity_margin"
+                android:src="@drawable/ic_next"
+                android:contentDescription="@string/button_next"/>
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/container_recipe_step_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </FrameLayout>
+
+    </LinearLayout>
+</ScrollView>

@@ -13,12 +13,15 @@ import butterknife.ButterKnife;
 import com.example.android.bakingapp.BaseApplication;
 import com.example.android.bakingapp.R;
 import com.example.android.bakingapp.fragments.RecipeListFragment;
+import com.example.android.bakingapp.models.Recipe;
 import com.example.android.bakingapp.network.ConnectivityReceiver;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener {
 
     final Context mContext = this;
     private RecipeListFragment mRecipeListFragment;
+    public static ArrayList<Recipe> sRecipeList;
 
     @BindView(R.id.coordinator_layout)                          CoordinatorLayout mCoordinatorLayout;
     @BindString(R.string.alert_connectivity_status_ok)          String mConnectivityOk;
@@ -88,4 +91,5 @@ public class MainActivity extends AppCompatActivity implements ConnectivityRecei
         }
         return super.onOptionsItemSelected(item);
     }
+
 }

@@ -6,16 +6,32 @@
     android:id="@+id/llayout_step_detail"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textview_step_desc"
+            tools:text="@string/placeholder_step"
+            style="@style/StepDescTextView"
+            android:paddingTop="0dp"
+            android:layout_marginTop="0dp"/>
+    </LinearLayout>
+
     <RelativeLayout
         android:id="@+id/rlayout_player"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
+        android:layout_weight="1"
         android:layout_height="@dimen/media_player_height"
         android:background="@color/colorLatte"
-        android:padding="@dimen/activity_margin">
+        android:padding="@dimen/activity_margin"
+        android:layout_marginTop="@dimen/activity_margin">
 
         <com.google.android.exoplayer2.ui.SimpleExoPlayerView
             android:id="@+id/playerview_recipe_video"
@@ -30,10 +46,5 @@
             style="@style/StepNoMediaImageView"/>
 
     </RelativeLayout>
-
-    <TextView
-        android:id="@+id/textview_step_desc"
-        tools:text="@string/placeholder_step"
-        style="@style/StepDescTextView"/>
 
 </LinearLayout>

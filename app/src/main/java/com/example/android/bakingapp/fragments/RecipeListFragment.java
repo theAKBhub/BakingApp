@@ -72,6 +72,9 @@ public class RecipeListFragment extends Fragment implements RecipeListAdapter.Re
         mRecipeListAdapter = new RecipeListAdapter(this);
         mRecyclerView.setAdapter(mRecipeListAdapter);
 
+        mRecipeListAdapter.setRecipeData(mRecipeList);
+        mRecipeListAdapter.notifyDataSetChanged();
+
         // Load recipes data
         loadRecipeData();
 
@@ -115,6 +118,7 @@ public class RecipeListFragment extends Fragment implements RecipeListAdapter.Re
                         postDataLoad(true, "");
 
                         mRecipeList = response.body();
+                        MainActivity.sRecipeList = mRecipeList;
                         mRecipeListAdapter.setRecipeData(mRecipeList);
                         mRecipeListAdapter.notifyDataSetChanged();
                     } else {
@@ -142,7 +146,7 @@ public class RecipeListFragment extends Fragment implements RecipeListAdapter.Re
         Bundle recipeBundle = new Bundle();
         ArrayList<Recipe> selectedRecipe = new ArrayList<>();
         selectedRecipe.add(recipe);
-        recipeBundle.putParcelableArrayList(Config.INTENT_EXTRA_SELECTED_RECIPE, selectedRecipe);
+        recipeBundle.putParcelableArrayList(Config.INTENT_KEY_SELECTED_RECIPE, selectedRecipe);
 
         Intent intent = new Intent(mParentActivity, DetailActivity.class);
         intent.putExtras(recipeBundle);

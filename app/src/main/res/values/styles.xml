@@ -8,13 +8,18 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
     <!-- Splash Theme -->
     <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="android:windowBackground">@drawable/splash</item>
     </style>
 
+
+    <!-- -->
     <!-- Recipe Listing Styles -->
+    <!-- -->
+
     <style name="ProgressBar">
         <item name="android:layout_width">@dimen/progressbar_size</item>
         <item name="android:layout_height">@dimen/progressbar_size</item>
@@ -58,6 +63,90 @@
         <item name="android:layout_below">@id/textview_recipe_name</item>
         <item name="android:textSize">@dimen/textsize_xsmall</item>
         <item name="android:textColor">@color/colorTextSecondary</item>
+    </style>
+
+
+    <!-- -->
+    <!-- DetailActivity Styles -->
+    <!-- -->
+
+    <style name="IngredientItem">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+        <item name="android:textSize">@dimen/textsize_xsmall</item>
+    </style>
+
+    <style name="HeaderTextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingLeft">@dimen/activity_margin</item>
+        <item name="android:paddingBottom">@dimen/label_padding</item>
+        <item name="android:paddingTop">@dimen/label_padding</item>
+        <item name="android:background">@color/colorPrimaryDark</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/textsize_small</item>
+    </style>
+
+    <style name="TextViewIngredient">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingTop">@dimen/activity_margin</item>
+        <item name="android:paddingLeft">@dimen/activity_margin</item>
+        <item name="android:paddingRight">@dimen/activity_margin</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/textsize_xsmall</item>
+        <item name="android:fontFamily">serif</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:background">@color/colorPrimaryDark</item>
+    </style>
+
+
+    <!-- -->
+    <!-- Step Detail Styles -->
+    <!-- -->
+
+    <style name="StepNavLayout">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginTop">@dimen/activity_margin</item>
+        <item name="android:layout_marginBottom">@dimen/activity_margin</item>
+    </style>
+
+    <style name="StepNavButton">
+        <item name="android:layout_width">@dimen/button_size</item>
+        <item name="android:layout_height">@dimen/button_size</item>
+        <item name="android:background">@color/colorPrimary</item>
+    </style>
+
+    <style name="StepNumTextView">
+        <item name="android:layout_width">@dimen/stepnum_display_width</item>
+        <item name="android:layout_height">@dimen/button_size</item>
+        <item name="android:paddingLeft">@dimen/activity_margin</item>
+        <item name="android:paddingRight">@dimen/activity_margin</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@color/colorLatte</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+    </style>
+
+    <style name="StepDescTextView">
+        <item name="android:layout_marginTop">@dimen/activity_margin</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+        <item name="android:textSize">@dimen/textsize_medium</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">@dimen/activity_margin</item>
+        <item name="android:lineSpacingExtra">@dimen/list_item_margin</item>
+    </style>
+
+    <style name="StepNoMediaImageView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:adjustViewBounds">true</item>
+        <item name="android:padding">@dimen/activity_margin</item>
+        <item name="android:background">@color/colorCoffee</item>
     </style>
 
 </resources>

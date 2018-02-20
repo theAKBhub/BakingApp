@@ -1,34 +1,71 @@
 package com.example.android.bakingapp.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import butterknife.BindBool;
+import butterknife.BindString;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import com.example.android.bakingapp.R;
 import com.example.android.bakingapp.activities.DetailActivity;
+import com.example.android.bakingapp.adapters.StepsAdapter;
 import com.example.android.bakingapp.models.Ingredient;
 import com.example.android.bakingapp.models.Recipe;
 import com.example.android.bakingapp.models.Step;
+import com.example.android.bakingapp.utils.Config;
+import com.example.android.bakingapp.utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
-import timber.log.Timber;
 
 /**
  * Created by aditibhattacharya on 03/02/2018.
  */
 
-public class RecipeDetailFragment extends Fragment {
+public class RecipeDetailFragment extends Fragment implements StepsAdapter.StepsOnClickHandler {
 
     private DetailActivity mParentActivity;
     private Unbinder mUnbinder;
     private Recipe mSelectedRecipe;
-    Bundle mRecipeBundle;
-    private ArrayList<Recipe> mRecipe;
+    private StepsAdapter mStepsAdapter;
+    private List<Ingredient> mIngredients;
+    private List<Step> mSteps;
+
+    @BindView(R.id.recyclerview_steps)              RecyclerView mRecyclerViewSteps;
+    @BindView(R.id.textview_ingredients)            TextView mTextViewIngredients;
+    @BindBool(R.bool.two_pane_layout)               boolean mIsTwoPaneLayout;
+    @BindString(R.string.display_ingredient)        String mDisplayIngredient;
+    @BindString(R.string.error_missing_callback)    String mErrorMissingCallback;
+
+    private OnListItemClickListener mCallBack;
+
+    // OnViewClickListener interface, calls a method in the host activity named onItemSelected
+    public interface OnListItemClickListener {
+        void onItemSelected(int stepId);
+    }
+
+
+    // Override onAttach to make sure that the container activity has implemented the callback
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        // This ensures that the host activity has implemented the callback interface, else it throws an exception
+        try {
+            mCallBack = (OnListItemClickListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(String.format(mErrorMissingCallback, context.toString()));
+        }
+    }
+
 
     /** Empty Constructor */
     public RecipeDetailFragment() {
@@ -40,41 +77,69 @@ public class RecipeDetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 
         mParentActivity = (DetailActivity) getActivity();
-
         View rootView = inflater.inflate(R.layout.fragment_recipe_detail, container, false);
         mUnbinder = ButterKnife.bind(this, rootView);
-        mSelectedRecipe = DetailActivity.mRecipe.get(0);
 
-        TextView tv1 = rootView.findViewById(R.id.tv_ingredients);
-        TextView tv2 = rootView.findViewById(R.id.tv_steps);
+        if (getArguments() != null) {
 
-        List<Ingredient> ingredients = mSelectedRecipe.getRecipeIngredients();
-        List<Step> steps = mSelectedRecipe.getRecipeSteps();
+            ArrayList<Recipe> recipes = getArguments().getParcelableArrayList(Config.INTENT_KEY_SELECTED_RECIPE);
+            mSelectedRecipe = recipes.get(0);
 
-        String i = "Ingredient ...\n";
-        String s = "Step ...\n";
+            mIngredients = mSelectedRecipe.getRecipeIngredients();
+            mSteps = mSelectedRecipe.getRecipeSteps();
 
-        if (ingredients != null) {
-            Timber.d("Ingredient not null ...");
-            for (Ingredient ing : ingredients) {
-                i += ing.getIngredient() + " - " + ing.getIngredientQuantity() + " " + ing.getIngredientMeasure() + "\n";
-            }
-        } else {
-            Timber.d("Ingredient NULL ...");
+            displayRecipeIngredients();
+            displayRecipeSteps();
         }
-
-        if (steps != null) { Timber.d("Step not null ...");
-            for (Step step : steps) {
-                s += "(" + step.getStepId() + ") " + step.getStepShortDescription() + "\n";
-            }
-        } else {
-            Timber.d("Step NULL ...");
-        }
-
-        tv1.setText(i);
-        tv2.setText(s);
 
         return rootView;
+    }
+
+
+    /**
+     * Method to display Recipe Ingredients in a RecyclerView
+     */
+    public void displayRecipeIngredients() {
+
+        StringBuilder ingredientDisplayString = new StringBuilder();
+
+        for (Ingredient ingredient : mIngredients) {
+            ingredientDisplayString.append(
+                    String.format(
+                            mDisplayIngredient,
+                            Utils.convertStringToFirstCapital(ingredient.getIngredient()),
+                            Double.toString(ingredient.getIngredientQuantity()),
+                            ingredient.getIngredientMeasure().toLowerCase()
+                    )
+            );
+        }
+
+        mTextViewIngredients.setText(ingredientDisplayString.toString());
+    }
+
+
+    /**
+     * Method to display Recipe Steps in a RecyclerView
+     */
+    public void displayRecipeSteps() {
+
+        // Initialize RecyclerView for displaying recipe steps using LinearLayout
+        RecyclerView.LayoutManager layoutManagerSteps = new LinearLayoutManager(mParentActivity);
+        mRecyclerViewSteps.setLayoutManager(layoutManagerSteps);
+
+        // Set Adapter
+        mStepsAdapter = new StepsAdapter(mParentActivity, this);
+        mRecyclerViewSteps.setAdapter(mStepsAdapter);
+        mStepsAdapter.setStepsData(mSteps);
+        mStepsAdapter.setSelected(0);
+    }
+
+
+    @Override
+    public void onClick(Step step) {
+        int id = step.getStepId();
+        mCallBack.onItemSelected(id);
+        mStepsAdapter.setSelected(id);
     }
 
 

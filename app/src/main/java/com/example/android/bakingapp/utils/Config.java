@@ -14,9 +14,14 @@ public class Config {
     // Duration in Milliseconds after which connection times out
     public static final int DURATION_CONNECTION_TIMEOUT = 100000;
 
-    // Value used to check if JSON has the required data
-    public static final byte JSON_BYTE_VALUE = 0x01;
+    // Keys
+    public static final String INTENT_KEY_SELECTED_RECIPE = "selected_recipe";
+    public static final String INTENT_KEY_SELECTED_STEP = "selected_step";
+    public static final String INTENT_KEY_STEP_COUNT = "step_count";
+    public static final String INTENT_KEY_WIDGET_INGREDIENTS = "widget_ingredients";
+    public static final String INTENT_KEY_WIDGET_RECIPE = "widget_recipe";
+    public static final String PREFERENCE_KEY_STEP_SELECTOR = "preference_step_selected";
+    public static final String PREFERENCE_KEY_RECIPE = "preference_recipe";
 
-    // Intent Extra Keys
-    public static final String INTENT_EXTRA_SELECTED_RECIPE = "selected_recipe";
+
 }
