@@ -25,7 +25,6 @@ dependencies {
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation "com.android.support.test:runner:$rootProject.testRunnerVersion"
-    androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.espressoLibraryVersion"
     compile "com.android.support:design:$rootProject.supportLibraryVersion"
 
     // RecyclerView
@@ -50,4 +49,18 @@ dependencies {
 
     // SimpleExoPlayer Library
     compile "com.google.android.exoplayer:exoplayer:$rootProject.exoplayerLibraryVersion"
+
+    // Espresso Library
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.espressoLibraryVersion"
+    androidTestImplementation "com.android.support.test.espresso:espresso-intents:$rootProject.espressoLibraryVersion"
+    androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$rootProject.espressoLibraryVersion"
+
+    // As project includes dependency to recyclerview and other support libs, dependency conflicts might happen
+    // with Espresso-contrib library, so exclude these libs
+    androidTestCompile ("com.android.support.test.espresso:espresso-contrib:$rootProject.espressoLibraryVersion"){
+        exclude group: 'com.android.support', module: 'appcompat-v7'
+        exclude group: 'com.android.support', module: 'support-v4'
+        exclude module: 'recyclerview-v7'
+    }
+
 }
