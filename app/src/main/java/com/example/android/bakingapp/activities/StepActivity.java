@@ -25,7 +25,7 @@ public class StepActivity extends AppCompatActivity {
     private int mStepCount;
     private Bundle mStepBundle;
     private ArrayList<Recipe> mSelectedRecipe;
-    FragmentManager mFragmentManager;
+    private FragmentManager mFragmentManager;
 
 
     @BindView(R.id.button_previous)         ImageButton mButtonPrevious;

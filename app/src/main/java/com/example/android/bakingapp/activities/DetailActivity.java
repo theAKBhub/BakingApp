@@ -16,11 +16,8 @@ import java.util.ArrayList;
 
 public class DetailActivity extends AppCompatActivity implements RecipeDetailFragment.OnListItemClickListener {
 
-    static String STACK_RECIPE_DETAIL="STACK_RECIPE_DETAIL";
-    static String STACK_RECIPE_STEP_DETAIL="STACK_RECIPE_STEP_DETAIL";
-    private static final String STATE_SELECTED_STEP = "state_step";
-
-//    private Integer mStepId;
+    private static String STACK_RECIPE_DETAIL="STACK_RECIPE_DETAIL";
+    private static String STACK_RECIPE_STEP_DETAIL="STACK_RECIPE_STEP_DETAIL";
     public static ArrayList<Recipe> sRecipe;
     private Bundle mRecipeBundle;
     private FragmentManager mFragmentManager;
@@ -86,18 +83,6 @@ public class DetailActivity extends AppCompatActivity implements RecipeDetailFra
         }
     }
 
-//    @Override
-//    public void onSaveInstanceState(Bundle outState) {
-//        super.onSaveInstanceState(outState);
-//        outState.putInt(STATE_SELECTED_STEP, mStepId);
-//    }
-//
-//    @Override
-//    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-//        super.onRestoreInstanceState(savedInstanceState);
-//        mStepId = savedInstanceState.getInt(STATE_SELECTED_STEP);
-//    }
-
 
     @Override
     public void onBackPressed() {
@@ -109,7 +94,6 @@ public class DetailActivity extends AppCompatActivity implements RecipeDetailFra
     public void onItemSelected(int stepId) {
 
         int stepsCount = sRecipe.get(0).getRecipeSteps().size();
-        //mStepId = stepId;
 
         if (mIsTwoPaneLayout) {
             Bundle stepBundle = new Bundle();

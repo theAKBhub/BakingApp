@@ -29,9 +29,8 @@ public class WidgetActivity extends AppCompatActivity {
     private RadioButton [] mRadioButtons;
     private RadioGroup mRadioGroupRecipeOptions;
     private Button mButton;
-    AppWidgetManager mAppWidgetManager;
+    private AppWidgetManager mAppWidgetManager;
     private Toast mToast;
-    String mPreviousRecipe;
     final Context mContext = this;
     private int mAppWidgetId;
     private RadioGroup.LayoutParams mLayoutParams;
