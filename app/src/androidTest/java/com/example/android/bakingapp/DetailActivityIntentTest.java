@@ -41,19 +41,22 @@ public class DetailActivityIntentTest {
     @Rule
     public IntentsTestRule<MainActivity> mActivityRule = new IntentsTestRule<>(MainActivity.class);
 
-
     @Before
     public void registerIdlingResources() {
         mIdlingResource = mActivityRule.getActivity().getIdlingResource();
         IdlingRegistry.getInstance().register(mIdlingResource);
     }
 
-
     @Before
     public void stubAllExternalIntents() {
         intending(not(isInternal())).respondWith(new Instrumentation.ActivityResult(Activity.RESULT_OK, null));
     }
 
+    /**
+     * Test method to check if an intent is launched to open DetailActivity.
+     * If in two-pane mode, it checks if the player view is visible.
+     * Else, it checks if DetailActivity is available.
+     */
 
     @Test
     public void launchDetailActivityIntent() {
