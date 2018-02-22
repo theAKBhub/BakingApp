@@ -27,6 +27,8 @@ public class Ingredient implements Parcelable {
     private String mIngredient;
 
 
+    public Ingredient() {}
+
     /**
      * Getter and Setter methods for class Ingredient
      */
@@ -61,7 +63,7 @@ public class Ingredient implements Parcelable {
      * Scope for this constructor is private so CREATOR can access it
      * @param parcel
      */
-    private Ingredient(Parcel parcel) {
+    public Ingredient(Parcel parcel) {
         mIngredientQuantity = parcel.readByte() == 0x00 ? null : parcel.readDouble();
         mIngredientMeasure = parcel.readByte() == 0x00 ? null : parcel.readString();
         mIngredient = parcel.readString();

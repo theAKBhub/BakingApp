@@ -17,6 +17,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import com.example.android.bakingapp.R;
+import com.example.android.bakingapp.SimpleIdlingResource;
 import com.example.android.bakingapp.activities.DetailActivity;
 import com.example.android.bakingapp.activities.MainActivity;
 import com.example.android.bakingapp.adapters.RecipeListAdapter;
@@ -41,6 +42,7 @@ public class RecipeListFragment extends Fragment implements RecipeListAdapter.Re
     private RecipeListAdapter mRecipeListAdapter;
     private ArrayList<Recipe> mRecipeList;
     private Unbinder mUnbinder;
+    SimpleIdlingResource mSimpleIdlingResource;
 
     @BindView(R.id.recyclerview_recipes)                RecyclerView mRecyclerView;
     @BindView(R.id.progress_indicator)                  ProgressBar mLoadingIndicator;
@@ -74,6 +76,12 @@ public class RecipeListFragment extends Fragment implements RecipeListAdapter.Re
 
         mRecipeListAdapter.setRecipeData(mRecipeList);
         mRecipeListAdapter.notifyDataSetChanged();
+
+        mSimpleIdlingResource = (SimpleIdlingResource) mParentActivity.getIdlingResource();
+        if (mSimpleIdlingResource != null) {
+            mSimpleIdlingResource.setIdleState(false);
+        }
+
 
         // Load recipes data
         loadRecipeData();
@@ -137,6 +145,10 @@ public class RecipeListFragment extends Fragment implements RecipeListAdapter.Re
         } catch (NoConnectivityException nce) {
             postDataLoad(false, mAlertRecipeLoadFailure);
             Timber.e(nce.getMessage());
+        }
+
+        if (mSimpleIdlingResource != null) {
+            mSimpleIdlingResource.setIdleState(true);
         }
     }
 

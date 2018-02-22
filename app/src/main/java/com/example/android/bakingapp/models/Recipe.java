@@ -38,6 +38,7 @@ public class Recipe implements Parcelable {
     private String mRecipeImage;
 
 
+    public Recipe() {}
 
     /**
      * Getter and Setter methods for class Recipe
@@ -98,7 +99,7 @@ public class Recipe implements Parcelable {
      * Scope for this constructor is private so CREATOR can access it
      * @param parcel
      */
-    protected Recipe(Parcel parcel) {
+    public Recipe(Parcel parcel) {
         mRecipeId = parcel.readByte() == 0x00 ? null : parcel.readInt();
         mRecipeName = parcel.readString();
         if (parcel.readByte() == 0x01) {

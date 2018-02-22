@@ -2,8 +2,12 @@ package com.example.android.bakingapp.activities;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.annotation.VisibleForTesting;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
+import android.support.test.espresso.IdlingResource;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,6 +16,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.example.android.bakingapp.BaseApplication;
 import com.example.android.bakingapp.R;
+import com.example.android.bakingapp.SimpleIdlingResource;
 import com.example.android.bakingapp.fragments.RecipeListFragment;
 import com.example.android.bakingapp.models.Recipe;
 import com.example.android.bakingapp.network.ConnectivityReceiver;
@@ -23,9 +28,27 @@ public class MainActivity extends AppCompatActivity implements ConnectivityRecei
     private RecipeListFragment mRecipeListFragment;
     public static ArrayList<Recipe> sRecipeList;
 
+    @Nullable
+    private SimpleIdlingResource mIdlingResource;
+
+
     @BindView(R.id.coordinator_layout)                          CoordinatorLayout mCoordinatorLayout;
     @BindString(R.string.alert_connectivity_status_ok)          String mConnectivityOk;
     @BindString(R.string.alert_connectivity_status_notok)       String mConnectivityNotOk;
+
+
+    /**
+     * This method is only called from test.
+     * It creates and returns a new {@link SimpleIdlingResource}.
+     */
+    @VisibleForTesting
+    @NonNull
+    public IdlingResource getIdlingResource() {
+        if (mIdlingResource == null) {
+            mIdlingResource = new SimpleIdlingResource();
+        }
+        return mIdlingResource;
+    }
 
 
     @Override
@@ -34,6 +57,9 @@ public class MainActivity extends AppCompatActivity implements ConnectivityRecei
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         mRecipeListFragment = (RecipeListFragment) getFragmentManager().findFragmentById(R.id.fragment_recipe_list);
+
+        // Get IdlingResource instance
+        getIdlingResource();
     }
 
     @Override
