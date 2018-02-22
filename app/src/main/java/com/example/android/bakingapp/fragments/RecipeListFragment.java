@@ -145,10 +145,6 @@ public class RecipeListFragment extends Fragment implements RecipeListAdapter.Re
             postDataLoad(false, mAlertRecipeLoadFailure);
             Timber.e(nce.getMessage());
         }
-
-        if (mSimpleIdlingResource != null) {
-            mSimpleIdlingResource.setIdleState(true);
-        }
     }
 
 
@@ -175,6 +171,10 @@ public class RecipeListFragment extends Fragment implements RecipeListAdapter.Re
         } else {
             mTextViewEmptyList.setText(message);
             mTextViewEmptyList.setVisibility(View.VISIBLE);
+        }
+
+        if (mSimpleIdlingResource != null) {
+            mSimpleIdlingResource.setIdleState(isLoadSuccessful);
         }
     }
 

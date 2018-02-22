@@ -118,7 +118,7 @@ public class MainActivityUITest {
      * Step RecyclerView list displays step description, default image (as this step is without media), and step number.
      */
     @Test
-    public void testClickRecipeAtPosition2() throws Exception {
+    public void testClickStepAtPosition() throws Exception {
 
         // Perform click action on Recipe RecyclerView list
         onView(withId(R.id.recyclerview_recipes))
