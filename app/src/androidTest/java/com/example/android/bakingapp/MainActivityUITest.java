@@ -60,7 +60,7 @@ public class MainActivityUITest {
     @Test
     public void testRecipeNameAtPosition() {
 
-        IdlingPolicies.setIdlingResourceTimeout(7, TimeUnit.SECONDS);
+        IdlingPolicies.setIdlingResourceTimeout(10, TimeUnit.SECONDS);
         IdlingPolicies.setIdlingResourceTimeout(30, TimeUnit.SECONDS);
 
         // Perform scroll action on Recipe RecyclerView list
