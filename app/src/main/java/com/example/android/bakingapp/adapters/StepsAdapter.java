@@ -48,6 +48,7 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepViewHold
         mOnClickHandler = onClickHandler;
         mSharedPreferences = mContext.getSharedPreferences(Config.PREFERENCE_KEY_RECIPE, Context.MODE_PRIVATE);
         mEditor = mSharedPreferences.edit();
+        mEditor.apply();
     }
 
 
