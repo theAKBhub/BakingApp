@@ -82,10 +82,6 @@ public class MainActivityUITest {
     @Test
     public void testClickRecipeAtPosition() throws Exception {
 
-        IdlingPolicies.setIdlingResourceTimeout(7, TimeUnit.SECONDS);
-        IdlingPolicies.setIdlingResourceTimeout(30, TimeUnit.SECONDS);
-
-
         // Perform click action on Recipe RecyclerView list
         onView(withId(R.id.recyclerview_recipes))
                 .perform(RecyclerViewActions
@@ -128,9 +124,6 @@ public class MainActivityUITest {
      */
     @Test
     public void testClickRecipeAtPosition2() throws Exception {
-
-        IdlingPolicies.setIdlingResourceTimeout(7, TimeUnit.SECONDS);
-        IdlingPolicies.setIdlingResourceTimeout(30, TimeUnit.SECONDS);
 
         // Perform click action on Recipe RecyclerView list
         onView(withId(R.id.recyclerview_recipes))
