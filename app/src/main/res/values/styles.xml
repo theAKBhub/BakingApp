@@ -29,13 +29,14 @@
 
     <style name="TextViewEmptyList">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
         <item name="android:layout_centerInParent">true</item>
         <item name="android:layout_marginBottom">@dimen/activity_margin</item>
         <item name="android:textSize">@dimen/textsize_small</item>
         <item name="android:textColor">@color/colorPrimaryDark</item>
         <item name="android:gravity">center</item>
-        <item name="android:visibility">visible</item>
+        <item name="android:visibility">gone</item>
+        <item name="android:background">@color/colorBackground</item>
     </style>
 
     <style name="RecipeListIcon">

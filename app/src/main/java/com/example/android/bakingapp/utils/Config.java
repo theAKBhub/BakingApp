@@ -12,7 +12,7 @@ public class Config {
             "https://d17h27t6h515a5.cloudfront.net/topher/2017/May/59121517_baking/";
 
     // Duration in Milliseconds after which connection times out
-    public static final int DURATION_CONNECTION_TIMEOUT = 100000;
+    public static final int DURATION_CONNECTION_TIMEOUT = 150000;
 
     // Keys
     public static final String INTENT_KEY_SELECTED_RECIPE = "selected_recipe";
@@ -22,6 +22,4 @@ public class Config {
     public static final String INTENT_KEY_WIDGET_RECIPE = "widget_recipe";
     public static final String PREFERENCE_KEY_STEP_SELECTOR = "preference_step_selected";
     public static final String PREFERENCE_KEY_RECIPE = "preference_recipe";
-
-
 }

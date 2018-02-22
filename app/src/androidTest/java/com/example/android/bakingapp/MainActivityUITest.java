@@ -8,7 +8,6 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.core.IsNot.not;
 
-import android.support.test.espresso.IdlingPolicies;
 import android.support.test.espresso.IdlingRegistry;
 import android.support.test.espresso.IdlingResource;
 import android.support.test.espresso.contrib.RecyclerViewActions;
@@ -16,7 +15,6 @@ import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import com.example.android.bakingapp.activities.MainActivity;
-import java.util.concurrent.TimeUnit;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -59,9 +57,6 @@ public class MainActivityUITest {
      */
     @Test
     public void testRecipeNameAtPosition() {
-
-        IdlingPolicies.setIdlingResourceTimeout(10, TimeUnit.SECONDS);
-        IdlingPolicies.setIdlingResourceTimeout(30, TimeUnit.SECONDS);
 
         // Perform scroll action on Recipe RecyclerView list
         onView(withId(R.id.recyclerview_recipes))

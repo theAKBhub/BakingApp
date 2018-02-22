@@ -90,7 +90,6 @@ public class Utils {
         return TextUtils.join(" ", wordsArray);
     }
 
-
     /**
      * Butterknife setter interface to change view visibility
      */

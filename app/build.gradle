@@ -66,7 +66,4 @@ dependencies {
         exclude module: 'recyclerview-v7'
         exclude module: 'support-annotations'
     }
-
-    androidTestCompile 'com.azimolabs.conditionwatcher:conditionwatcher:0.2'
-
 }

@@ -17,14 +17,12 @@ import android.app.Activity;
 import android.app.Instrumentation;
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
-import android.support.test.espresso.IdlingPolicies;
 import android.support.test.espresso.IdlingRegistry;
 import android.support.test.espresso.IdlingResource;
 import android.support.test.espresso.contrib.RecyclerViewActions;
 import android.support.test.espresso.intent.rule.IntentsTestRule;
 import com.example.android.bakingapp.activities.DetailActivity;
 import com.example.android.bakingapp.activities.MainActivity;
-import java.util.concurrent.TimeUnit;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -59,9 +57,6 @@ public class DetailActivityIntentTest {
 
     @Test
     public void launchDetailActivityIntent() {
-
-        IdlingPolicies.setIdlingResourceTimeout(10, TimeUnit.SECONDS);
-        IdlingPolicies.setIdlingResourceTimeout(30, TimeUnit.SECONDS);
 
         onView(withId(R.id.recyclerview_recipes))
                 .perform(RecyclerViewActions.actionOnItem(

@@ -38,6 +38,7 @@ public class RecipeDetailFragment extends Fragment implements StepsAdapter.Steps
     private StepsAdapter mStepsAdapter;
     private List<Ingredient> mIngredients;
     private List<Step> mSteps;
+    public Integer mSelectedStepId;
 
     @BindView(R.id.recyclerview_steps)              RecyclerView mRecyclerViewSteps;
     @BindView(R.id.textview_ingredients)            TextView mTextViewIngredients;
@@ -83,6 +84,7 @@ public class RecipeDetailFragment extends Fragment implements StepsAdapter.Steps
         if (getArguments() != null) {
 
             ArrayList<Recipe> recipes = getArguments().getParcelableArrayList(Config.INTENT_KEY_SELECTED_RECIPE);
+            mSelectedStepId = getArguments().getInt(Config.INTENT_KEY_SELECTED_STEP);
             mSelectedRecipe = recipes.get(0);
 
             mIngredients = mSelectedRecipe.getRecipeIngredients();
@@ -131,15 +133,20 @@ public class RecipeDetailFragment extends Fragment implements StepsAdapter.Steps
         mStepsAdapter = new StepsAdapter(mParentActivity, this);
         mRecyclerViewSteps.setAdapter(mStepsAdapter);
         mStepsAdapter.setStepsData(mSteps);
-        mStepsAdapter.setSelected(0);
+
+        if (mSelectedStepId == null) {
+            mStepsAdapter.setSelected(0);
+        } else {
+            mStepsAdapter.setSelected(mSelectedStepId);
+        }
     }
 
 
     @Override
     public void onClick(Step step) {
-        int id = step.getStepId();
-        mCallBack.onItemSelected(id);
-        mStepsAdapter.setSelected(id);
+        mSelectedStepId = step.getStepId();
+        mCallBack.onItemSelected(mSelectedStepId);
+        mStepsAdapter.setSelected(mSelectedStepId);
     }
 
 

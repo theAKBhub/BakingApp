@@ -26,21 +26,21 @@ import java.util.List;
 public class WidgetActivity extends AppCompatActivity {
 
     private RadioButton mRadioButton;
-    private RadioButton[] mRadioButtons;
+    private RadioButton [] mRadioButtons;
     private RadioGroup mRadioGroupRecipeOptions;
     private Button mButton;
     AppWidgetManager mAppWidgetManager;
     private Toast mToast;
-
     String mPreviousRecipe;
     final Context mContext = this;
     private int mAppWidgetId;
     private RadioGroup.LayoutParams mLayoutParams;
     public ArrayList<Recipe> mRecipeList;
-    String[] mWidgetRecipe;
+    String [] mWidgetRecipe;
     int mPrevRecipeId;
     private List<Ingredient> mIngredients;
 
+    // ButterKinfe resource binding
     @BindString(R.string.display_ingredient)        String mDisplayIngredient;
     @BindString(R.string.appwidget_text)            String mWidgetDefaultText;
     @BindString(R.string.info_ingredients_saved)    String mInfoIngredientSaved;

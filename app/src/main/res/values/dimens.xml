@@ -12,6 +12,7 @@
     <dimen name="button_size">48dp</dimen>
     <dimen name="stepnum_display_width">120dp</dimen>
     <dimen name="media_player_height">300dp</dimen>
+    <dimen name="divider_height">1dp</dimen>
 
     <!-- Font Sizes -->
     <dimen name="textsize_xxsmall">12sp</dimen>

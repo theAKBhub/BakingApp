@@ -82,7 +82,6 @@ public class RecipeListFragment extends Fragment implements RecipeListAdapter.Re
             mSimpleIdlingResource.setIdleState(false);
         }
 
-
         // Load recipes data
         loadRecipeData();
 

@@ -18,7 +18,9 @@ public class DetailActivity extends AppCompatActivity implements RecipeDetailFra
 
     static String STACK_RECIPE_DETAIL="STACK_RECIPE_DETAIL";
     static String STACK_RECIPE_STEP_DETAIL="STACK_RECIPE_STEP_DETAIL";
+    private static final String STATE_SELECTED_STEP = "state_step";
 
+//    private Integer mStepId;
     public static ArrayList<Recipe> sRecipe;
     private Bundle mRecipeBundle;
     private FragmentManager mFragmentManager;
@@ -52,6 +54,7 @@ public class DetailActivity extends AppCompatActivity implements RecipeDetailFra
 
                 // Create fragment instance for ingredients and steps
                 RecipeDetailFragment recipeDetailFragment = new RecipeDetailFragment();
+                mRecipeBundle.putInt(Config.INTENT_KEY_SELECTED_STEP, 0);
                 recipeDetailFragment.setArguments(mRecipeBundle);
                 mFragmentManager
                         .beginTransaction()
@@ -83,6 +86,19 @@ public class DetailActivity extends AppCompatActivity implements RecipeDetailFra
         }
     }
 
+//    @Override
+//    public void onSaveInstanceState(Bundle outState) {
+//        super.onSaveInstanceState(outState);
+//        outState.putInt(STATE_SELECTED_STEP, mStepId);
+//    }
+//
+//    @Override
+//    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+//        super.onRestoreInstanceState(savedInstanceState);
+//        mStepId = savedInstanceState.getInt(STATE_SELECTED_STEP);
+//    }
+
+
     @Override
     public void onBackPressed() {
         startActivity(new Intent(this, MainActivity.class));
@@ -93,12 +109,20 @@ public class DetailActivity extends AppCompatActivity implements RecipeDetailFra
     public void onItemSelected(int stepId) {
 
         int stepsCount = sRecipe.get(0).getRecipeSteps().size();
+        //mStepId = stepId;
 
         if (mIsTwoPaneLayout) {
             Bundle stepBundle = new Bundle();
             stepBundle.putParcelableArrayList(Config.INTENT_KEY_SELECTED_RECIPE, sRecipe);
             stepBundle.putInt(Config.INTENT_KEY_SELECTED_STEP, stepId);
             stepBundle.putInt(Config.INTENT_KEY_STEP_COUNT, stepsCount);
+
+            RecipeDetailFragment recipeDetailFragment = new RecipeDetailFragment();
+            recipeDetailFragment.setArguments(stepBundle);
+            mFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.container_recipe_detail, recipeDetailFragment)
+                    .commit();
 
             RecipeStepDetailFragment recipeStepDetailFragment = new RecipeStepDetailFragment();
             recipeStepDetailFragment.setArguments(stepBundle);
