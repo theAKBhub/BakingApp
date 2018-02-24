@@ -35,6 +35,7 @@ public class Step implements Parcelable {
     // This attribute is used to identify current step selection and change background color accordingly
     private boolean mIsSelected;
 
+    /** Empty Constructor */
     public Step() {}
 
     /**

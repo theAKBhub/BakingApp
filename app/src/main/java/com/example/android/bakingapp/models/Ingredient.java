@@ -27,7 +27,9 @@ public class Ingredient implements Parcelable {
     private String mIngredient;
 
 
+    /** Empty Constructor */
     public Ingredient() {}
+
 
     /**
      * Getter and Setter methods for class Ingredient

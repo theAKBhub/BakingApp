@@ -37,7 +37,7 @@ public class Recipe implements Parcelable {
     @SerializedName("image")
     private String mRecipeImage;
 
-
+    /** Empty Constructor */
     public Recipe() {}
 
     /**
