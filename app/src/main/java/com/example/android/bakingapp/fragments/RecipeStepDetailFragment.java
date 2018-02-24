@@ -1,6 +1,7 @@
 package com.example.android.bakingapp.fragments;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import butterknife.BindDrawable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -42,6 +44,7 @@ import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
+import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 /**
@@ -51,6 +54,7 @@ import java.util.ArrayList;
 public class RecipeStepDetailFragment extends Fragment implements Player.EventListener {
 
     private static final String TAG = RecipeStepDetailFragment.class.getSimpleName();
+
     private Unbinder mUnbinder;
     private Context mContext;
 
@@ -60,12 +64,13 @@ public class RecipeStepDetailFragment extends Fragment implements Player.EventLi
     private int mStepCount;
     private String mStepDesc;
     private String mVideoUrl;
+    private String mImageUrl;
     private SimpleExoPlayer mExoPlayer;
     private MediaSessionCompat mMediaSession;
     private PlaybackStateCompat.Builder mStateBuilder;
     private BandwidthMeter mBandwidthMeter;
-    TrackSelector mTrackSelector;
-
+    private TrackSelector mTrackSelector;
+    private long mPlayerPosition;
 
     // ButterKnife View binding
     @BindView(R.id.textview_step_desc)          TextView mTextViewStepDesc;
@@ -73,12 +78,13 @@ public class RecipeStepDetailFragment extends Fragment implements Player.EventLi
     @BindView(R.id.playerview_recipe_video)     SimpleExoPlayerView mExoPlayerView;
     @BindView(R.id.imageview_no_media)          ImageView mImageViewNoMedia;
 
+    // ButterKnife Resource binding
+    @BindDrawable(R.drawable.logo)              Drawable mRecipeDefaultImage;
 
 
     /** Empty Constructor */
     public RecipeStepDetailFragment() {
     }
-
 
     /**
      * Override this method to get the context method as the fragment is used by multiple activities
@@ -90,6 +96,26 @@ public class RecipeStepDetailFragment extends Fragment implements Player.EventLi
         mContext = context;
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        if (getArguments() != null) {
+            ArrayList<Recipe> recipes = getArguments().getParcelableArrayList(Config.INTENT_KEY_SELECTED_RECIPE);
+
+            if (recipes != null) {
+                mSelectedRecipe = recipes.get(0);
+                mStepId = getArguments().getInt(Config.INTENT_KEY_SELECTED_STEP);
+                mStepCount = getArguments().getInt(Config.INTENT_KEY_STEP_COUNT);
+
+                getStepDetails();
+            }
+        }
+
+        if (savedInstanceState != null) {
+            mPlayerPosition = savedInstanceState.getLong(Config.STATE_PLAYER_POSITION);
+        }
+    }
 
     @Nullable
     @Override
@@ -99,29 +125,22 @@ public class RecipeStepDetailFragment extends Fragment implements Player.EventLi
         View rootView = inflater.inflate(R.layout.fragment_recipe_step_detail, container, false);
         mUnbinder = ButterKnife.bind(this, rootView);
 
-        // Get arguments passed on from host activity
-        if (getArguments() != null) {
-            ArrayList<Recipe> recipes = getArguments().getParcelableArrayList(Config.INTENT_KEY_SELECTED_RECIPE);
-
-            if (recipes != null) {
-                mSelectedRecipe = recipes.get(0);
-                mStepId = getArguments().getInt(Config.INTENT_KEY_SELECTED_STEP);
-                mStepCount = getArguments().getInt(Config.INTENT_KEY_STEP_COUNT);
-            }
+        if (savedInstanceState == null) {
+            // Create exoplayer to show recipe video
+            createMediaPlayer();
         }
-
-        // Get step details
-        getStepDetails();
 
         // Display steps description
         displayStepsData();
 
-        // Create exoplayer to show recipe video
-        createMediaPlayer();
-
         return rootView;
     }
 
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putLong(Config.STATE_PLAYER_POSITION, mPlayerPosition);
+    }
 
     /**
      * Method to get description and video for the selected step
@@ -130,8 +149,8 @@ public class RecipeStepDetailFragment extends Fragment implements Player.EventLi
         mSelectedStep = mSelectedRecipe.getRecipeSteps().get(mStepId);
         mStepDesc = mSelectedStep.getStepDescription();
         mVideoUrl = mSelectedStep.getStepVideoURL();
+        mImageUrl = mSelectedStep.getStepThumbnailURL();
     }
-
 
     /**
      * Method to display Step Details
@@ -147,27 +166,34 @@ public class RecipeStepDetailFragment extends Fragment implements Player.EventLi
         mTextViewStepDesc.setText(mStepDesc);
     }
 
-
     /**
      * Method to create ExoPlayer instance, and attach media to it
      */
     public void createMediaPlayer() {
 
-        releasePlayer();
-
         if (!Utils.isEmptyString(mVideoUrl)) {
-            initializeMediaSession();
-            initializePlayer(Uri.parse(mVideoUrl));
-
             // hide the overlay default image
             ButterKnife.apply(mImageViewNoMedia, Utils.VISIBILITY, View.GONE);
 
+            initializeMediaSession();
+            initializePlayer(Uri.parse(mVideoUrl));
+
         } else {
-            // show the overlay default image as no video found for the step
+            // show the recipe image as no video found for the step
+            // if no recipe image is found, display a default image
             ButterKnife.apply(mImageViewNoMedia, Utils.VISIBILITY, View.VISIBLE);
+
+            if (!Utils.isEmptyString(mImageUrl)) {
+                Picasso.with(mContext)
+                        .load(mImageUrl)
+                        .placeholder(mRecipeDefaultImage)
+                        .error(mRecipeDefaultImage)
+                        .into(mImageViewNoMedia);
+            } else {
+                mImageViewNoMedia.setImageDrawable(mRecipeDefaultImage);
+            }
         }
     }
-
 
     /**
      * Initializes the Media Session to be enabled with media buttons, transport controls, callbacks
@@ -204,7 +230,6 @@ public class RecipeStepDetailFragment extends Fragment implements Player.EventLi
 
     }
 
-
     /**
      * Initialize the player
      * @param mediaUri - uri of the media to be played
@@ -238,9 +263,9 @@ public class RecipeStepDetailFragment extends Fragment implements Player.EventLi
             mExoPlayer.prepare(mediaSource);
 
             mExoPlayer.setPlayWhenReady(true);
+            mExoPlayer.seekTo(mPlayerPosition);
         }
     }
-
 
     /**
      * Media Session Callbacks which enables all external clients to control the player
@@ -249,20 +274,22 @@ public class RecipeStepDetailFragment extends Fragment implements Player.EventLi
 
         @Override
         public void onPlay() {
+            super.onPlay();
             mExoPlayer.setPlayWhenReady(true);
         }
 
         @Override
         public void onPause() {
+            super.onPause();
             mExoPlayer.setPlayWhenReady(false);
         }
 
         @Override
         public void onSkipToPrevious() {
+            super.onSkipToPrevious();
             mExoPlayer.seekTo(0);
         }
     }
-
 
     @Override
     public void onTimelineChanged(Timeline timeline, Object manifest) {
@@ -278,13 +305,6 @@ public class RecipeStepDetailFragment extends Fragment implements Player.EventLi
 
     @Override
     public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
-        if ((playbackState == Player.STATE_READY) && playWhenReady) {
-            mStateBuilder.setState(PlaybackStateCompat.STATE_PLAYING, mExoPlayer.getCurrentPosition(), 1f);
-        } else if (playbackState == Player.STATE_READY) {
-            mStateBuilder.setState(PlaybackStateCompat.STATE_PAUSED, mExoPlayer.getCurrentPosition(), 1f);
-        }
-
-        mMediaSession.setPlaybackState(mStateBuilder.build());
     }
 
     @Override
@@ -311,36 +331,35 @@ public class RecipeStepDetailFragment extends Fragment implements Player.EventLi
     public void onSeekProcessed() {
     }
 
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        releasePlayer();
-    }
-
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         mUnbinder.unbind();
-        releasePlayer();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        releasePlayer();
     }
 
     @Override
     public void onPause() {
         super.onPause();
+        if (mExoPlayer != null) mPlayerPosition = mExoPlayer.getCurrentPosition();
         releasePlayer();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if ((Util.SDK_INT <= 23 || mExoPlayer == null)) {
+            createMediaPlayer();
+        }
     }
 
     /**
      * Release the player, and deactivate media session
      */
     private void releasePlayer() {
+        if (mExoPlayer != null) {
+            mPlayerPosition = mExoPlayer.getCurrentPosition();
+        }
+
         if (mExoPlayer != null) {
             mExoPlayer.stop();
             mExoPlayer.release();
@@ -355,5 +374,4 @@ public class RecipeStepDetailFragment extends Fragment implements Player.EventLi
             mTrackSelector = null;
         }
     }
-
 }

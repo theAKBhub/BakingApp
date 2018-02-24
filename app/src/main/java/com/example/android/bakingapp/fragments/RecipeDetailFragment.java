@@ -53,7 +53,6 @@ public class RecipeDetailFragment extends Fragment implements StepsAdapter.Steps
         void onItemSelected(int stepId);
     }
 
-
     // Override onAttach to make sure that the container activity has implemented the callback
     @Override
     public void onAttach(Context context) {
@@ -67,11 +66,9 @@ public class RecipeDetailFragment extends Fragment implements StepsAdapter.Steps
         }
     }
 
-
     /** Empty Constructor */
     public RecipeDetailFragment() {
     }
-
 
     @Nullable
     @Override
@@ -97,7 +94,6 @@ public class RecipeDetailFragment extends Fragment implements StepsAdapter.Steps
         return rootView;
     }
 
-
     /**
      * Method to display Recipe Ingredients in a RecyclerView
      */
@@ -118,7 +114,6 @@ public class RecipeDetailFragment extends Fragment implements StepsAdapter.Steps
 
         mTextViewIngredients.setText(ingredientDisplayString.toString());
     }
-
 
     /**
      * Method to display Recipe Steps in a RecyclerView
@@ -141,14 +136,12 @@ public class RecipeDetailFragment extends Fragment implements StepsAdapter.Steps
         }
     }
 
-
     @Override
     public void onClick(Step step) {
         mSelectedStepId = step.getStepId();
         mCallBack.onItemSelected(mSelectedStepId);
         mStepsAdapter.setSelected(mSelectedStepId);
     }
-
 
     @Override
     public void onDestroyView() {

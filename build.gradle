@@ -39,4 +39,5 @@ ext {
     butterknifeLibraryVersion = '8.8.1'
     exoplayerLibraryVersion = '2.6.1'
     expandableTextLibraryVersion = '0.1.4'
+    picassoLibraryVersion = '2.5.2'
 }

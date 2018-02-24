@@ -50,6 +50,9 @@ dependencies {
     // SimpleExoPlayer Library
     compile "com.google.android.exoplayer:exoplayer:$rootProject.exoplayerLibraryVersion"
 
+    // Picasso Library
+    compile "com.squareup.picasso:picasso:$rootProject.picassoLibraryVersion"
+
     compile "com.android.support.test.espresso:espresso-idling-resource:$rootProject.espressoLibraryVersion"
 
     // Espresso Library

@@ -12,6 +12,7 @@ import butterknife.ButterKnife;
 import com.example.android.bakingapp.R;
 import com.example.android.bakingapp.models.Recipe;
 import com.example.android.bakingapp.utils.Utils;
+import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 /**
@@ -25,35 +26,34 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
     private Context mContext;
     private ArrayList<Recipe> mRecipeList;
 
-
     /**
      * Interface to receive onClick messages
      */
     public interface RecipeListOnClickHandler {
+
         void onClick(Recipe recipe);
     }
 
-
     /**
      * OnClick handler for the adapter that handles situation when a single item is clicked
-     * @param onClickHandler
      */
     public RecipeListAdapter(RecipeListOnClickHandler onClickHandler) {
         mOnClickHandler = onClickHandler;
     }
-
 
     @Override
     public long getItemId(int position) {
         return position;
     }
 
-
     public class RecipeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        @BindView(R.id.imageview_recipe_icon)           ImageView mImageViewRecipeIcon;
-        @BindView(R.id.textview_recipe_name)            TextView mTextViewRecipeName;
-        @BindView(R.id.textview_recipe_servings)        TextView mTextViewRecipeServings;
+        @BindView(R.id.imageview_recipe_icon)
+        ImageView imageViewRecipeIcon;
+        @BindView(R.id.textview_recipe_name)
+        TextView textViewRecipeName;
+        @BindView(R.id.textview_recipe_servings)
+        TextView textViewRecipeServings;
 
         public RecipeViewHolder(View itemView) {
             super(itemView);
@@ -63,7 +63,6 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
 
         /**
          * This method gets called when child view is clicked
-         * @param view
          */
         @Override
         public void onClick(View view) {
@@ -73,12 +72,10 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
         }
     }
 
-
     /**
      * Method called when a new ViewHolder gets created in the event of RecyclerView being laid out.
      * This creates enough ViewHolders to fill up the screen and allow scrolling
-     * @param parent
-     * @param viewType
+     *
      * @return A new ViewHolder that holds the View for each list item
      */
     @Override
@@ -90,42 +87,50 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
         return new RecipeViewHolder(view);
     }
 
-
     /**
      * Method used by RecyclerView to list the recipes
-     * @param holder
-     * @param position
      */
     @Override
     public void onBindViewHolder(RecipeListAdapter.RecipeViewHolder holder, int position) {
         if (position < getItemCount()) {
             Recipe recipe = mRecipeList.get(position);
-            String name = recipe.getRecipeName();
+            String recipeName = recipe.getRecipeName();
             int servings = recipe.getRecipeServings();
+            String imageUri = recipe.getRecipeImage();
 
-            if (!Utils.isEmptyString(name)) {
-                holder.mTextViewRecipeName.setText(name);
+            if (!Utils.isEmptyString(recipeName)) {
+
+                // set recipe name
+                holder.textViewRecipeName.setText(recipeName);
+
+                // set recipe servings
                 if (!Utils.isNumZero(servings)) {
-                    holder.mTextViewRecipeServings.setText(mContext.getString(R.string.display_servings, servings));
+                    holder.textViewRecipeServings.setText(mContext.getString(R.string.display_servings, servings));
                 } else {
-                    holder.mTextViewRecipeServings.setText(mContext.getString(R.string.display_no_servings));
+                    holder.textViewRecipeServings.setText(mContext.getString(R.string.display_no_servings));
                 }
 
-                holder.mImageViewRecipeIcon.setImageResource(getImageResourceId(name));
+                // set recipe image if available, else display a default image
+                if (!Utils.isEmptyString(imageUri)) {
+                    Picasso.with(mContext)
+                            .load(imageUri)
+                            .placeholder(getImageResourceId(recipeName))
+                            .error(getImageResourceId(recipeName))
+                            .into(holder.imageViewRecipeIcon);
+                } else {
+                    holder.imageViewRecipeIcon.setImageResource(getImageResourceId(recipeName));
+                }
             }
         }
     }
-
 
     @Override
     public int getItemCount() {
         return (mRecipeList == null) ? 0 : mRecipeList.size();
     }
 
-
     /**
      * Method used to refresh the list once the adapter is already created, to avoid creating a new one
-     * @param recipeList
      */
     public void setRecipeData(ArrayList<Recipe> recipeList) {
         mRecipeList = recipeList;
@@ -134,8 +139,6 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
 
     /**
      * Add icon resource to list item depending on the recipe name
-     * @param recipeName
-     * @return
      */
     public int getImageResourceId(String recipeName) {
         int imageResId;

@@ -14,7 +14,7 @@ public class Config {
     // Duration in Milliseconds after which connection times out
     public static final int DURATION_CONNECTION_TIMEOUT = 150000;
 
-    // Keys
+    // Keys and Constants
     public static final String INTENT_KEY_SELECTED_RECIPE = "selected_recipe";
     public static final String INTENT_KEY_SELECTED_STEP = "selected_step";
     public static final String INTENT_KEY_STEP_COUNT = "step_count";
@@ -22,4 +22,9 @@ public class Config {
     public static final String INTENT_KEY_WIDGET_RECIPE = "widget_recipe";
     public static final String PREFERENCE_KEY_STEP_SELECTOR = "preference_step_selected";
     public static final String PREFERENCE_KEY_RECIPE = "preference_recipe";
+    public static final String STATE_SELECTED_STEP = "state_step";
+    public static String STACK_RECIPE_DETAIL = "STACK_RECIPE_DETAIL";
+    public static String STACK_RECIPE_STEP_DETAIL = "STACK_RECIPE_STEP_DETAIL";
+    public static final String STATE_PLAYER_POSITION = "player_position";
 }
+

@@ -25,17 +25,17 @@ import java.util.List;
 
 public class WidgetActivity extends AppCompatActivity {
 
+    final Context mContext = this;
     private RadioButton mRadioButton;
     private RadioButton [] mRadioButtons;
     private RadioGroup mRadioGroupRecipeOptions;
     private Button mButton;
     private AppWidgetManager mAppWidgetManager;
     private Toast mToast;
-    final Context mContext = this;
     private int mAppWidgetId;
     private RadioGroup.LayoutParams mLayoutParams;
     public ArrayList<Recipe> mRecipeList;
-    String [] mWidgetRecipe;
+    private String [] mWidgetRecipe;
     int mPrevRecipeId;
     private List<Ingredient> mIngredients;
 
@@ -82,7 +82,6 @@ public class WidgetActivity extends AppCompatActivity {
         });
     }
 
-
     /**
      * Method to display recipe options to choose from in form of radio buttons
      */
@@ -110,7 +109,6 @@ public class WidgetActivity extends AppCompatActivity {
             }
         }
     }
-
 
     /**
      * Method to process the selected recipe ingredients to be displayed on widget
@@ -161,14 +159,12 @@ public class WidgetActivity extends AppCompatActivity {
         }
     }
 
-
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         setIntent(intent);
         processIntentExtras();
     }
-
 
     /**
      * Method to receive Intent Extras passed on from home screen Widget

@@ -18,8 +18,6 @@ import java.util.ArrayList;
 
 public class StepActivity extends AppCompatActivity {
 
-    private static final String STATE_SELECTED_STEP = "state_step";
-
     private Recipe mRecipe;
     private int mStepId;
     private int mStepCount;
@@ -27,12 +25,14 @@ public class StepActivity extends AppCompatActivity {
     private ArrayList<Recipe> mSelectedRecipe;
     private FragmentManager mFragmentManager;
 
-
-    @BindView(R.id.button_previous)         ImageButton mButtonPrevious;
-    @BindView(R.id.button_next)             ImageButton mButtonNext;
-    @BindView(R.id.textview_stepnum)        TextView mTextViewStepNum;
-    @BindString(R.string.display_stepnum)   String mDisplayStepNum;
-
+    @BindView(R.id.button_previous)
+    ImageButton mButtonPrevious;
+    @BindView(R.id.button_next)
+    ImageButton mButtonNext;
+    @BindView(R.id.textview_stepnum)
+    TextView mTextViewStepNum;
+    @BindString(R.string.display_stepnum)
+    String mDisplayStepNum;
 
 
     @Override
@@ -52,34 +52,36 @@ public class StepActivity extends AppCompatActivity {
 
         mFragmentManager = getSupportFragmentManager();
         displayStepNum();
-        displayStepFragment();
 
+        // Create fragment instance only once
+        if (savedInstanceState == null) {
+            displayStepFragment();
+        }
     }
-
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putInt(STATE_SELECTED_STEP, mStepId);
+        outState.putInt(Config.STATE_SELECTED_STEP, mStepId);
     }
-
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        mStepId = savedInstanceState.getInt(STATE_SELECTED_STEP);
-        displayStepNum();
-        displayStepFragment();
+        if (savedInstanceState != null) {
+            mStepId = savedInstanceState.getInt(Config.STATE_SELECTED_STEP);
+            displayStepNum();
+        } else {
+            displayStepFragment();
+        }
     }
 
     /**
      * OnClick handlers for step navigation buttons
-     * @param view
      */
     @OnClick({R.id.button_previous, R.id.button_next})
     public void setViewOnClickEvent(View view) {
-        switch(view.getId())
-        {
+        switch (view.getId()) {
             case R.id.button_previous:
                 submitPrevious();
                 break;
@@ -89,7 +91,6 @@ public class StepActivity extends AppCompatActivity {
                 break;
         }
     }
-
 
     /**
      * Method to navigate to previous step of selected recipe
@@ -102,26 +103,23 @@ public class StepActivity extends AppCompatActivity {
         }
     }
 
-
     /**
      * Method to navigate to next step of selected recipe
      */
     public void submitNext() {
-        if (mStepId < (mStepCount-1)) {
+        if (mStepId < (mStepCount - 1)) {
             mStepId++;
             displayStepNum();
             displayStepFragment();
         }
     }
 
-
     /**
      * Method to display the current step number
      */
     public void displayStepNum() {
-        mTextViewStepNum.setText(String.format(mDisplayStepNum, mStepId, (mStepCount-1)));
+        mTextViewStepNum.setText(String.format(mDisplayStepNum, mStepId, (mStepCount - 1)));
     }
-
 
     /**
      * Method to replace fragment with new step details

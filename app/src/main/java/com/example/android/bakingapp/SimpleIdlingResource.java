@@ -1,6 +1,5 @@
 package com.example.android.bakingapp;
 
-
 import android.support.annotation.Nullable;
 import android.support.test.espresso.IdlingResource;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -35,6 +34,7 @@ public class SimpleIdlingResource implements IdlingResource {
 
     /**
      * Sets the new idle state. If idle state, it pings the {@link ResourceCallback}.
+     *
      * @param isIdleNow false if there are pending operations, true if idle.
      */
     public void setIdleState(boolean isIdleNow) {

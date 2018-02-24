@@ -98,7 +98,6 @@ public class RecipeListFragment extends Fragment implements RecipeListAdapter.Re
         super.onActivityCreated(savedInstanceState);
     }
 
-
     /**
      * Method to load data into the adapter and display in the RecyclerView layout
      * Displays alert messages if
@@ -147,7 +146,6 @@ public class RecipeListFragment extends Fragment implements RecipeListAdapter.Re
         }
     }
 
-
     @Override
     public void onClick(Recipe recipe) {
         Bundle recipeBundle = new Bundle();
@@ -160,7 +158,11 @@ public class RecipeListFragment extends Fragment implements RecipeListAdapter.Re
         startActivity(intent);
     }
 
-
+    /**
+     * Method to show/hide loading indicator and empty list message depending on data is retrieved or not
+     * @param isLoadSuccessful
+     * @param message
+     */
     public void postDataLoad(boolean isLoadSuccessful, String message) {
         if (mLoadingIndicator.getVisibility() == View.VISIBLE) {
             mLoadingIndicator.setVisibility(View.INVISIBLE);
@@ -177,7 +179,6 @@ public class RecipeListFragment extends Fragment implements RecipeListAdapter.Re
             mSimpleIdlingResource.setIdleState(isLoadSuccessful);
         }
     }
-
 
     @Override
     public void onDestroyView() {

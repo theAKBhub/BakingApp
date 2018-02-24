@@ -25,7 +25,6 @@
 
         <ImageView
             android:id="@+id/imageview_no_media"
-            android:src="@drawable/logo"
             android:contentDescription="@string/placeholder_no_media"
             style="@style/StepNoMediaImageView"/>
 

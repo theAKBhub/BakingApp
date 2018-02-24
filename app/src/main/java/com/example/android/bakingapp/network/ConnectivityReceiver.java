@@ -15,7 +15,6 @@ public class ConnectivityReceiver extends BroadcastReceiver {
 
     public static ConnectivityReceiverListener mConnectivityReceiverListener;
 
-
     public interface ConnectivityReceiverListener {
         void onConnectivityChanged(boolean isConnected);
     }

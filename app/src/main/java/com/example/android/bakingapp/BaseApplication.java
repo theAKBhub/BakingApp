@@ -33,7 +33,6 @@ public class BaseApplication extends Application {
         setReceiverStatus(true);
     }
 
-
     /**
      * Method that returns the application instance
      * @return ApplicationInstance

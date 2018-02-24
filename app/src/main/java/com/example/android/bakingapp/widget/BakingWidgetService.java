@@ -31,7 +31,6 @@ public class BakingWidgetService extends IntentService {
         context.startService(intent);
     }
 
-
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
         if (intent != null) {

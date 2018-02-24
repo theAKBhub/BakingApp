@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity implements ConnectivityRecei
     @Nullable
     private SimpleIdlingResource mIdlingResource;
 
-
     @BindView(R.id.coordinator_layout)                          CoordinatorLayout mCoordinatorLayout;
     @BindString(R.string.alert_connectivity_status_ok)          String mConnectivityOk;
     @BindString(R.string.alert_connectivity_status_notok)       String mConnectivityNotOk;
@@ -49,7 +48,6 @@ public class MainActivity extends AppCompatActivity implements ConnectivityRecei
         }
         return mIdlingResource;
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +81,6 @@ public class MainActivity extends AppCompatActivity implements ConnectivityRecei
         }
     }
 
-
     /**
      * Method to display Snackbar with connectivity message
      * @param isConnected
@@ -94,7 +91,6 @@ public class MainActivity extends AppCompatActivity implements ConnectivityRecei
         message = (isConnected) ? mConnectivityOk : mConnectivityNotOk;
         Snackbar.make(mCoordinatorLayout, message, Snackbar.LENGTH_SHORT).show();
     }
-
 
     /**
      * Inflate Settings Menu for Movie List
@@ -107,7 +103,6 @@ public class MainActivity extends AppCompatActivity implements ConnectivityRecei
         return true;
     }
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -117,5 +112,4 @@ public class MainActivity extends AppCompatActivity implements ConnectivityRecei
         }
         return super.onOptionsItemSelected(item);
     }
-
 }

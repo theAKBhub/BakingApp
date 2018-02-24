@@ -16,8 +16,6 @@ import java.util.ArrayList;
 
 public class DetailActivity extends AppCompatActivity implements RecipeDetailFragment.OnListItemClickListener {
 
-    private static String STACK_RECIPE_DETAIL="STACK_RECIPE_DETAIL";
-    private static String STACK_RECIPE_STEP_DETAIL="STACK_RECIPE_STEP_DETAIL";
     public static ArrayList<Recipe> sRecipe;
     private Bundle mRecipeBundle;
     private FragmentManager mFragmentManager;
@@ -56,7 +54,7 @@ public class DetailActivity extends AppCompatActivity implements RecipeDetailFra
                 mFragmentManager
                         .beginTransaction()
                         .replace(R.id.container_recipe_detail, recipeDetailFragment)
-                        .addToBackStack(STACK_RECIPE_DETAIL)
+                        .addToBackStack(Config.STACK_RECIPE_DETAIL)
                         .commit();
 
                 // Create fragment instance for Step Deatils
@@ -66,7 +64,7 @@ public class DetailActivity extends AppCompatActivity implements RecipeDetailFra
                 mFragmentManager
                         .beginTransaction()
                         .replace(R.id.container_recipe_step_detail, recipeStepDetailFragment)
-                        .addToBackStack(STACK_RECIPE_STEP_DETAIL)
+                        .addToBackStack(Config.STACK_RECIPE_STEP_DETAIL)
                         .commit();
 
             } else {
@@ -77,12 +75,11 @@ public class DetailActivity extends AppCompatActivity implements RecipeDetailFra
                 mFragmentManager
                         .beginTransaction()
                         .replace(R.id.container_recipe_detail, recipeDetailFragment)
-                        .addToBackStack(STACK_RECIPE_DETAIL)
+                        .addToBackStack(Config.STACK_RECIPE_DETAIL)
                         .commit();
             }
         }
     }
-
 
     @Override
     public void onBackPressed() {

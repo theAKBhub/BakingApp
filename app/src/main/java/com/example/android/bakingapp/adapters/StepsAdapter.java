@@ -35,13 +35,12 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepViewHold
      * Interface to receive onClick messages
      */
     public interface StepsOnClickHandler {
+
         void onClick(Step step);
     }
 
-
     /**
      * OnClick handler for the adapter that handles situation when a single item is clicked
-     * @param onClickHandler
      */
     public StepsAdapter(Context context, StepsOnClickHandler onClickHandler) {
         mContext = context;
@@ -51,19 +50,21 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepViewHold
         mEditor.apply();
     }
 
-
     @Override
     public long getItemId(int position) {
         return position;
     }
 
-
     public class StepViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        @BindView(R.id.rlayout_step) RelativeLayout rlayoutStep;
-        @BindView(R.id.textview_step) TextView textViewStep;
-        @BindColor(R.color.colorLatte) int colorDefaultBackground;
-        @BindColor(R.color.colorListItemSelected) int colorSelectedBackground;
+        @BindView(R.id.rlayout_step)
+        RelativeLayout rlayoutStep;
+        @BindView(R.id.textview_step)
+        TextView textViewStep;
+        @BindColor(R.color.colorLatte)
+        int colorDefaultBackground;
+        @BindColor(R.color.colorListItemSelected)
+        int colorSelectedBackground;
 
         public StepViewHolder(View itemView) {
             super(itemView);
@@ -73,7 +74,6 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepViewHold
 
         /**
          * This method gets called when child view is clicked
-         * @param view
          */
         @Override
         public void onClick(View view) {
@@ -83,12 +83,10 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepViewHold
         }
     }
 
-
     /**
      * Method called when a new ViewHolder gets created in the event of RecyclerView being laid out.
      * This creates enough ViewHolders to fill up the screen and allow scrolling
-     * @param parent
-     * @param viewType
+     *
      * @return A new ViewHolder that holds the View for each list item
      */
     @Override
@@ -99,11 +97,8 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepViewHold
         return new StepViewHolder(view);
     }
 
-
     /**
      * Method used by RecyclerView to list the steps
-     * @param holder
-     * @param position
      */
     @Override
     public void onBindViewHolder(StepsAdapter.StepViewHolder holder, int position) {
@@ -124,27 +119,22 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepViewHold
         }
     }
 
-
     @Override
     public int getItemCount() {
         return (mSteps == null) ? 0 : mSteps.size();
     }
 
-
     /**
      * Method used to refresh the list once the adapter is already created, to avoid creating a new one
-     * @param steps
      */
     public void setStepsData(List<Step> steps) {
         mSteps = steps;
         notifyDataSetChanged();
     }
 
-
     /**
      * Method to set step item currently selected, and also save the selected step in SharedPreferences.
      * This is used to toggle the list item background color.
-     * @param pos
      */
     public void setSelected(int pos) {
         int oldPos = mSharedPreferences.getInt(Config.PREFERENCE_KEY_STEP_SELECTOR, -1);
@@ -157,5 +147,4 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepViewHold
         mSteps.get(pos).setIsSelected(true);
         notifyDataSetChanged();
     }
-
 }
