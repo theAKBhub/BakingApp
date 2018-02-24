@@ -7,7 +7,6 @@
     <string name="button_previous">Previous</string>
     <string name="button_next">Next</string>
 
-
     <!-- Display Strings -->
     <string name="display_servings">Servings: %1$d</string>
     <string name="display_no_servings">Servings: <i>unavailable</i></string>
@@ -15,13 +14,11 @@
     <string name="display_ingredient">%1$s\u0020\u0020\u0028%2$s\u0020%3$s\u0029\n</string>
     <string name="display_stepnum">Step %1$d of %2$d</string>
 
-
     <!-- Recipe Types -->
     <string name="recipe_pie">Pie</string>
     <string name="recipe_cake">Cake</string>
     <string name="recipe_brownie">Brownie</string>
     <string name="recipe_cheesecake">Cheesecake</string>
-
 
     <!-- Placeholders -->
     <string name="placeholder_recipe_icon">Recipe Icon</string>
@@ -35,27 +32,22 @@
     <string name="placeholder_no_media">No recipe video for this step</string>
     <string name="placeholder_widget_header">Recipe Name</string>
 
-
     <!-- Alert Messages -->
     <string name="alert_connectivity_status_ok">Your device is connected to Internet</string>
     <string name="alert_connectivity_status_notok">Your device is not connected to Internet</string>
     <string name="alert_recipe_load_failure">Failed to load list of recipes. \nCheck if device has connectivity and try again.</string>
-
 
     <!-- Error Messages -->
     <string name="error_recipe_load">Error loading recipes via HTTP request [Status code = %1$d]</string>
     <string name="error_missing_callback">%1$s must implement OnViewClickListener</string>
     <string name="error_invalid_step">There seems to be a problem. The selected recipe step is not identified.</string>
 
-
     <!-- Intent Filters -->
     <string name="intent_filter_connectivity_change">android.net.conn.CONNECTIVITY_CHANGE</string>
     <string name="intent_filter_wifi_state_changed">android.net.wifi.WIFI_STATE_CHANGED</string>
 
-
     <!-- Menu -->
     <string name="menu_refresh">Refresh</string>
-
 
     <!-- Widget -->
     <string name="appwidget_text">Tap here to select a recipe.\nIngredients of the recipe will be displayed
@@ -64,6 +56,5 @@
     <string name="button_choose_recipe">Choose Recipe</string>
     <string name="info_ingredients_saved">Return to device\'s home screen to see ingredients saved on the widget</string>
     <string name="info_no_chosen_recipe">Please select a recipe from the options given</string>
-
 
 </resources>

@@ -29,7 +29,6 @@
             android:src="@drawable/logo"
             android:contentDescription="@string/placeholder_no_media"
             style="@style/StepNoMediaImageView"/>
-
     </RelativeLayout>
 
     <TextView
