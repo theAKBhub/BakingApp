@@ -6,7 +6,7 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 
 /**
- * The purpose of this interface is to define the endpoints, that include details of
+ * Purpose of this interface is to define the endpoints, that include details of
  * request methods (e.g. GET, POST, etc.) and parameters.
  * Created by aditibhattacharya on 27/01/2018.
  */
