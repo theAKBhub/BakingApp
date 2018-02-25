@@ -56,5 +56,6 @@
     <string name="button_choose_recipe">Choose Recipe</string>
     <string name="info_ingredients_saved">Return to device\'s home screen to see ingredients saved on the widget</string>
     <string name="info_no_chosen_recipe">Please select a recipe from the options given</string>
+    <string name="alert_app_launch">The app needs to be launched first to activate the widget</string>
 
 </resources>

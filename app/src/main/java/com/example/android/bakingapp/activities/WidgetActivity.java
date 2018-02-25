@@ -53,6 +53,12 @@ public class WidgetActivity extends AppCompatActivity {
         setContentView(R.layout.activity_widget);
         ButterKnife.bind(this);
 
+        if (MainActivity.sRecipeList == null) {
+            startActivity(new Intent(this, MainActivity.class));
+            Utils.showToastMessage(mContext, mToast, getString(R.string.alert_app_launch)).show();
+            finish();
+        }
+
         mRecipeList = MainActivity.sRecipeList;
         mWidgetRecipe = new String[3];
 
