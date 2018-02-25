@@ -18,11 +18,11 @@ The project goal was to create a Baking App that will allow Udacity’s resident
 
 
 #### Special features used
-<p><a href="https://www.androidhive.info/2012/07/android-detect-internet-connection-status/">Automatic connectivity detection using Broadcast Receiver</br>
-<a href="https://www.androidhive.info/2015/09/android-material-design-snackbar-example/">Snackbar</br>
+<p><a href="https://www.androidhive.info/2012/07/android-detect-internet-connection-status/">Automatic connectivity detection using Broadcast Receiver<br/>
+<a href="https://www.androidhive.info/2015/09/android-material-design-snackbar-example/">Snackbar<br/>
 <a href="https://spin.atomicobject.com/2016/04/15/espresso-testing-recyclerviews/">Espresso testing with RecyclerViews </p>
 
-
+#
 # Screenshots
 <a href="https://user-images.githubusercontent.com/22053146/36641121-9849e17a-1a22-11e8-9bff-c5f40d2e474a.jpg"><img src="https://user-images.githubusercontent.com/22053146/36641121-9849e17a-1a22-11e8-9bff-c5f40d2e474a.jpg" 
 data-canonical-src="https://user-images.githubusercontent.com/22053146/36641121-9849e17a-1a22-11e8-9bff-c5f40d2e474a.jpg" 
