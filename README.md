@@ -24,10 +24,10 @@ The project goal was to create a Baking App that will allow Udacity’s resident
 
 
 # Screenshots
-<img src="https://user-images.githubusercontent.com/22053146/36641121-9849e17a-1a22-11e8-9bff-c5f40d2e474a.jpg" 
+<a href="https://user-images.githubusercontent.com/22053146/36641121-9849e17a-1a22-11e8-9bff-c5f40d2e474a.jpg"><img src="https://user-images.githubusercontent.com/22053146/36641121-9849e17a-1a22-11e8-9bff-c5f40d2e474a.jpg" 
 data-canonical-src="https://user-images.githubusercontent.com/22053146/36641121-9849e17a-1a22-11e8-9bff-c5f40d2e474a.jpg" 
-width="973" height="400" />
+width="973" height="400" /></a>
 </br></br>
-<img src="https://user-images.githubusercontent.com/22053146/36641132-c29343e0-1a22-11e8-8586-68108a0058fd.jpg" 
+<a href="https://user-images.githubusercontent.com/22053146/36641132-c29343e0-1a22-11e8-8586-68108a0058fd.jpg"><img src="https://user-images.githubusercontent.com/22053146/36641132-c29343e0-1a22-11e8-8586-68108a0058fd.jpg" 
 data-canonical-src="https://user-images.githubusercontent.com/22053146/36641132-c29343e0-1a22-11e8-8586-68108a0058fd.jpg" 
-width="949" height="500" />
+width="949" height="500" /></a>
