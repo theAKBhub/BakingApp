@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements ConnectivityRecei
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        mRecipeListFragment = (RecipeListFragment) getFragmentManager().findFragmentById(R.id.fragment_recipe_list);
+        mRecipeListFragment = (RecipeListFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_recipe_list);
 
         // Get IdlingResource instance
         getIdlingResource();

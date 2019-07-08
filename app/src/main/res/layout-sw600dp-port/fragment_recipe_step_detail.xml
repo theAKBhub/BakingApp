@@ -3,6 +3,7 @@
 <!-- This fragment layout is for displaying recipe video and recipe step details -->
 
 <LinearLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/llayout_step_detail"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -41,7 +42,7 @@
 
         <ImageView
             android:id="@+id/imageview_no_media"
-            android:src="@drawable/logo"
+            app:srcCompat="@drawable/logo"
             android:contentDescription="@string/placeholder_no_media"
             style="@style/StepNoMediaImageView"/>
 

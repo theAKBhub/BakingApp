@@ -13,7 +13,6 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.CoreMatchers.not;
 
-import android.app.Activity;
 import android.app.Instrumentation;
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +20,7 @@ import android.support.test.espresso.IdlingRegistry;
 import android.support.test.espresso.IdlingResource;
 import android.support.test.espresso.contrib.RecyclerViewActions;
 import android.support.test.espresso.intent.rule.IntentsTestRule;
+import android.support.v7.app.AppCompatActivity;
 import com.example.android.bakingapp.activities.DetailActivity;
 import com.example.android.bakingapp.activities.MainActivity;
 import org.junit.After;
@@ -49,7 +49,7 @@ public class DetailActivityIntentTest {
 
     @Before
     public void stubAllExternalIntents() {
-        intending(not(isInternal())).respondWith(new Instrumentation.ActivityResult(Activity.RESULT_OK, null));
+        intending(not(isInternal())).respondWith(new Instrumentation.ActivityResult(AppCompatActivity.RESULT_OK, null));
     }
 
     /**

@@ -27,7 +27,7 @@
             android:id="@+id/imageview_arrow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_play"
+            card_view:srcCompat="@drawable/ic_play"
             android:contentDescription="@string/placeholder_step"
             android:layout_marginLeft="@dimen/activity_margin"
             android:layout_alignParentRight="true"/>

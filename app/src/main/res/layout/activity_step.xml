@@ -20,9 +20,11 @@
             <ImageButton
                 android:id="@+id/button_previous"
                 style="@style/StepNavButton"
+                android:background="@color/colorPrimary"
+                android:layout_marginEnd="@dimen/activity_margin"
                 android:layout_marginRight="@dimen/activity_margin"
-                android:src="@drawable/ic_previous"
-                android:contentDescription="@string/button_previous"/>
+                android:contentDescription="@string/button_previous"
+                app:srcCompat="@drawable/ic_previous"/>
 
             <TextView
                 android:id="@+id/textview_stepnum"
@@ -32,8 +34,10 @@
             <ImageButton
                 android:id="@+id/button_next"
                 style="@style/StepNavButton"
+                android:background="@color/colorPrimary"
                 android:layout_marginLeft="@dimen/activity_margin"
-                android:src="@drawable/ic_next"
+                android:layout_marginStart="@dimen/activity_margin"
+                app:srcCompat="@drawable/ic_next"
                 android:contentDescription="@string/button_next"/>
 
         </LinearLayout>

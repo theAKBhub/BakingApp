@@ -21,6 +21,10 @@
             android:id="@+id/textview_ingredients"
             tools:text="@string/label_ingredients"
             style="@style/TextViewIngredient"
+            android:background="@color/colorPrimaryDark"
+            android:lineSpacingExtra="@dimen/line_spacing"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"/>

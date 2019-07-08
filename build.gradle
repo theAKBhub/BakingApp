@@ -9,7 +9,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath 'com.android.tools.build:gradle:3.4.1'
         
 
         // NOTE: Do not place your application dependencies here; they belong
@@ -29,15 +29,15 @@ task clean(type: Delete) {
 }
 
 ext {
-    supportLibraryVersion = '27.0.2'
+    supportLibraryVersion = '28.0.0'
     timberLibraryVersion = '4.6.0'
-    espressoLibraryVersion = '3.0.1'
+    espressoLibraryVersion = '3.0.2'
     testRunnerVersion = '1.0.1'
     retrofitLibraryVersion = '2.3.0'
     okhttpLibraryVersion = '3.6.0'
     gsonLibraryVersion = '2.8.1'
     butterknifeLibraryVersion = '8.8.1'
-    exoplayerLibraryVersion = '2.6.1'
+    exoplayerLibraryVersion = '2.8.0'
     expandableTextLibraryVersion = '0.1.4'
     picassoLibraryVersion = '2.5.2'
 }

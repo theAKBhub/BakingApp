@@ -38,7 +38,7 @@ import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.trackselection.TrackSelection;
 import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
 import com.google.android.exoplayer2.trackselection.TrackSelector;
-import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
+import com.google.android.exoplayer2.ui.PlayerView;
 import com.google.android.exoplayer2.upstream.BandwidthMeter;
 import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
@@ -75,7 +75,7 @@ public class RecipeStepDetailFragment extends Fragment implements Player.EventLi
     // ButterKnife View binding
     @BindView(R.id.textview_step_desc)          TextView mTextViewStepDesc;
     @BindView(R.id.rlayout_player)              RelativeLayout mRlayoutPlayer;
-    @BindView(R.id.playerview_recipe_video)     SimpleExoPlayerView mExoPlayerView;
+    @BindView(R.id.playerview_recipe_video)     PlayerView mExoPlayerView;
     @BindView(R.id.imageview_no_media)          ImageView mImageViewNoMedia;
 
     // ButterKnife Resource binding
@@ -292,11 +292,11 @@ public class RecipeStepDetailFragment extends Fragment implements Player.EventLi
     }
 
     @Override
-    public void onTimelineChanged(Timeline timeline, Object manifest) {
+    public void onTracksChanged(TrackGroupArray trackGroups, TrackSelectionArray trackSelections) {
     }
 
     @Override
-    public void onTracksChanged(TrackGroupArray trackGroups, TrackSelectionArray trackSelections) {
+    public void onTimelineChanged(Timeline timeline, @Nullable Object manifest, int reason) {
     }
 
     @Override

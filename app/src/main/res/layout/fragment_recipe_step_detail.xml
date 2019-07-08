@@ -17,7 +17,7 @@
         android:background="@color/colorLatte"
         android:padding="@dimen/activity_margin">
 
-        <com.google.android.exoplayer2.ui.SimpleExoPlayerView
+        <com.google.android.exoplayer2.ui.PlayerView
             android:id="@+id/playerview_recipe_video"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

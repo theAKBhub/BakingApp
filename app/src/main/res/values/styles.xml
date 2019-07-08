@@ -35,7 +35,7 @@
         <item name="android:textColor">@color/colorPrimaryDark</item>
         <item name="android:gravity">center</item>
         <item name="android:visibility">gone</item>
-        <item name="android:background">@color/colorBackground</item>
+        <item name="background">@color/colorBackground</item>
     </style>
 
     <style name="RecipeListIcon">
@@ -50,7 +50,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_toRightOf">@id/imageview_recipe_icon</item>
-        <item name="android:fontFamily">sans-serif</item>
+        <item name="fontFamily">sans-serif</item>
     </style>
 
     <style name="RecipeListText.RecipeName">
@@ -83,7 +83,7 @@
         <item name="android:paddingLeft">@dimen/activity_margin</item>
         <item name="android:paddingBottom">@dimen/label_padding</item>
         <item name="android:paddingTop">@dimen/label_padding</item>
-        <item name="android:background">@color/colorPrimaryDark</item>
+        <item name="background">@color/colorPrimaryDark</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">@dimen/textsize_small</item>
     </style>
@@ -95,10 +95,9 @@
         <item name="android:paddingLeft">@dimen/activity_margin</item>
         <item name="android:paddingRight">@dimen/activity_margin</item>
         <item name="android:textColor">@android:color/white</item>
-        <item name="android:textSize">@dimen/textsize_xsmall</item>
-        <item name="android:fontFamily">serif</item>
+        <item name="android:textSize">@dimen/textsize_xxsmall</item>
+        <item name="fontFamily">serif</item>
         <item name="android:textStyle">italic</item>
-        <item name="android:background">@color/colorPrimaryDark</item>
     </style>
 
 
@@ -118,7 +117,7 @@
     <style name="StepNavButton">
         <item name="android:layout_width">@dimen/button_size</item>
         <item name="android:layout_height">@dimen/button_size</item>
-        <item name="android:background">@color/colorPrimary</item>
+        <item name="background">@color/colorPrimary</item>
     </style>
 
     <style name="StepNumTextView">
@@ -127,7 +126,7 @@
         <item name="android:paddingLeft">@dimen/activity_margin</item>
         <item name="android:paddingRight">@dimen/activity_margin</item>
         <item name="android:gravity">center</item>
-        <item name="android:background">@color/colorLatte</item>
+        <item name="background">@color/colorLatte</item>
         <item name="android:textColor">@color/colorTextPrimary</item>
     </style>
 
@@ -146,7 +145,7 @@
         <item name="android:layout_height">match_parent</item>
         <item name="android:adjustViewBounds">true</item>
         <item name="android:padding">@dimen/activity_margin</item>
-        <item name="android:background">@color/colorCoffee</item>
+        <item name="background">@color/colorCoffee</item>
     </style>
 
 </resources>

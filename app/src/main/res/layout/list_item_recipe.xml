@@ -18,7 +18,7 @@
 
         <ImageView
             android:id="@+id/imageview_recipe_icon"
-            android:src="@drawable/ic_pie"
+            card_view:srcCompat="@drawable/ic_pie"
             android:contentDescription="@string/placeholder_recipe_icon"
             style="@style/RecipeListIcon"/>
 
